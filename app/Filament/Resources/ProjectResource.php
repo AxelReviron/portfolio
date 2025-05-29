@@ -17,7 +17,7 @@ class ProjectResource extends Resource
 {
     protected static ?string $model = Project::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-code-bracket-square';
 
     public static function form(Form $form): Form
     {
@@ -30,9 +30,21 @@ class ProjectResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('website')
+                    ->nullable()
+                    ->url()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('github_url')
+                    ->nullable()
+                    ->url()
                     ->maxLength(255),
+                Forms\Components\Select::make('technologies')
+                    ->multiple()
+                    ->preload()
+                    ->relationship(titleAttribute: 'name'),
+                Forms\Components\Select::make('experiences')
+                    ->multiple()
+                    ->preload()
+                    ->relationship(titleAttribute: 'name')
             ]);
     }
 
@@ -41,12 +53,17 @@ class ProjectResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('description')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('website')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('github_url')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('technologies.name')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('experiences.name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
