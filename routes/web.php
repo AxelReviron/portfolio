@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProjectController;
+use App\Models\Project;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -15,5 +17,7 @@ use Inertia\Inertia;
 //require __DIR__.'/auth.php';
 
 Route::get('/', function () {
-    return Inertia::render('Welcome');
+    return Inertia::render('Home', [
+        'projects' => Project::all()
+    ]);
 })->name('home');
