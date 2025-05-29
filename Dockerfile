@@ -12,7 +12,8 @@ RUN \
 
 RUN install-php-extensions \
     pcntl \
-    pdo_mysql
+    pdo_mysql \
+    intl
     # Add other PHP extensions here...
 
 COPY . /app
