@@ -1,84 +1,71 @@
 <script setup lang="ts">
 
+import NavBar from '@/layouts/NavBar.vue';
+import { onMounted, onUnmounted, ref } from 'vue';
+
+const scrollY = ref(0);
+const navBarFixed = ref(false);
+
+const handleScroll = () => {
+    scrollY.value = window.scrollY;
+
+    if (navBarFixed.value === false && (window.innerHeight / scrollY.value) <= 1.7) {
+        navBarFixed.value = true;
+    } else if (navBarFixed.value === true && (window.innerHeight / scrollY.value) > 1.7) {
+        navBarFixed.value = false;
+    }
+
+};
+
+onMounted(() => {
+    window.addEventListener('scroll', handleScroll);
+});
+
+onUnmounted(() => {
+    window.removeEventListener('scroll', handleScroll);
+});
 </script>
 
 <template>
-    <div class="home-section-container">
-        <div class="image-text-container">
-            <img class="picture" src="../../images/picture.jpg" alt="picture"/>
-            <div class="text-container">
-                <h1 class="title">
+    <div class="home-section-container min-h-screen flex justify-center items-center relative overflow-hidden flex flex-col gap-8">
+        <div class="flex flex-col md:flex-row justify-center items-center md:gap-8 z-10">
+            <div class="flex flex-col">
+                <h1 class="text-4xl md:text-6xl font-medium text-green-900 mb-2 block md:hidden">
                     Axel Reviron
                 </h1>
-                <h2 class="sub-title">
+                <h2 class="text-2xl md:text-4xl text-green-800 mb-4 block md:hidden">
                     Full Stack Web Developer
                 </h2>
-                <p class="text">
-                    Passionate about creating elegant, user-friendly web applications.
-                    With over 5 years of experience, I specialize in modern JavaScript frameworks and responsive design, always focusing on delivering high-quality solutions.
+                <img
+                    class="w-84 md:w-96 object-cover rounded-3xl border-4 border-transparent shadow-lg relative"
+                    src="../../images/picture.jpg"
+                    alt="picture"
+                />
+            </div>
+            <div class="flex flex-col h-70 md:h-100 justify-center items-start gap-2 w-84 md:w-120">
+                <h1 class="text-4xl md:text-6xl font-medium text-green-900 mb-2 hidden md:block">
+                    Axel Reviron
+                </h1>
+                <h2 class="text-2xl md:text-4xl text-green-800 mb-4 hidden md:block">
+                    Full Stack Web Developer
+                </h2>
+                <p class="text-xl md:text-xl text-green-100 max-w-lg mb-8 leading-relaxed">
+                    Dedicated developer focused on crafting clean, secure, and user-friendly digital products.
+                    Thrives on continuous learning and crafting quality code.
+                    From websites and APIs to web applications and even video games, loves bringing ideas to life !
+                    Strong belief in data privacy; also enjoys exploring and self-hosting open-source solutions.
                 </p>
             </div>
         </div>
-        <div class="buttons-container">
 
-        </div>
+        <NavBar :isFixed="navBarFixed"/>
     </div>
 </template>
 
 <style scoped>
 .home-section-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: solid 1px white;
-    width: 100rem;
-    height: 50rem;
-}
-.image-text-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    border: solid 1px white;
-    width: 100%;
-    height: 80%;
-}
-.picture {
-    width: auto;
-    height: 100%;
-    border-radius: 1rem;
-}
-.text-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 4rem;
-    border: solid 1px white;
-}
-.title {
-    color: white;
-    font-family: Apple,serif;
-    font-size: 8rem;
-}
-.sub-title {
-    color: rgba(255, 255, 255, 0.69);
-    font-family: Apple,serif;
-    font-size: 4rem;
-}
-.text {
-    color: rgba(255, 255, 255, 0.69);
-    font-family: Apple,serif;
-    font-size: 2rem;
-}
-.buttons-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    border: solid 1px white;
-    width: 100%;
-    height: 20%;
+    background-image: url("../../images/abstract-gradient.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 </style>
