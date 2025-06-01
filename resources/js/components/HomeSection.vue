@@ -5,6 +5,7 @@ import { onMounted, onUnmounted, ref } from 'vue';
 
 const scrollY = ref(0);
 const navBarFixed = ref(false);
+const otherSection = ref(false);
 
 const handleScroll = () => {
     scrollY.value = window.scrollY;
@@ -14,6 +15,15 @@ const handleScroll = () => {
     } else if (navBarFixed.value === true && (window.innerHeight / scrollY.value) > 1.7) {
         navBarFixed.value = false;
     }
+
+    if (otherSection.value === false && (window.innerHeight / scrollY.value) <= 1.1) {
+        otherSection.value = true;
+        console.log('blanc');
+    } else if (otherSection.value === true && (window.innerHeight / scrollY.value) > 1.1) {
+        console.log('vert');
+        otherSection.value = false;
+    }
+
 
 };
 
@@ -58,7 +68,7 @@ onUnmounted(() => {
             </div>
         </div>
 
-        <NavBar :isFixed="navBarFixed"/>
+        <NavBar :isFixed="navBarFixed" :isOtherSection="otherSection"/>
     </div>
 </template>
 
