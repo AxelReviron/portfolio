@@ -32,6 +32,14 @@ services:
     networks:
       - portfolio_network
 
+  ngrok:
+    container_name: portfolio_ngrok
+    image: ngrok/ngrok
+    environment:
+      NGROK_AUTHTOKEN: ${NGROK_AUTHTOKEN}
+    command: [ "http", "frankenphp:8000", "--url=barnacle-top-namely.ngrok-free.app" ]
+    networks:
+      - portfolio_network
 volumes:
   caddy_data:
   caddy_config:
