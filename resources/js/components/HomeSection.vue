@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import NavBar from '@/layouts/NavBar.vue';
+import NavBar from '@/components/NavBar.vue';
 import { onMounted, onUnmounted, ref } from 'vue';
 
 const scrollY = ref(0);
@@ -18,13 +18,9 @@ const handleScroll = () => {
 
     if (otherSection.value === false && (window.innerHeight / scrollY.value) <= 1.1) {
         otherSection.value = true;
-        console.log('blanc');
     } else if (otherSection.value === true && (window.innerHeight / scrollY.value) > 1.1) {
-        console.log('vert');
         otherSection.value = false;
     }
-
-
 };
 
 onMounted(() => {
@@ -40,26 +36,26 @@ onUnmounted(() => {
     <div class="home-section-container min-h-screen flex justify-center items-center relative overflow-hidden flex flex-col gap-8">
         <div class="flex flex-col md:flex-row justify-center items-center md:gap-8 z-10">
             <div class="flex flex-col">
-                <h1 class="text-4xl md:text-6xl font-medium text-green-900 mb-2 block md:hidden">
+                <h1 class="text-4xl font-medium text-green-900 mb-2 block md:hidden">
                     Axel Reviron
                 </h1>
-                <h2 class="text-2xl md:text-4xl text-green-800 mb-4 block md:hidden">
+                <h2 class="text-2xl text-green-800 mb-4 block md:hidden">
                     Full Stack Web Developer
                 </h2>
                 <img
-                    class="w-84 md:w-96 object-cover rounded-3xl border-4 border-transparent shadow-lg relative"
+                    class="w-84 md:w-64 object-cover rounded-3xl border-4 border-transparent shadow-lg relative"
                     src="../../images/picture.jpg"
                     alt="picture"
                 />
             </div>
             <div class="flex flex-col h-70 md:h-100 justify-center items-start gap-2 w-84 md:w-120">
-                <h1 class="text-4xl md:text-6xl font-medium text-green-900 mb-2 hidden md:block">
+                <h1 class="md:text-4xl font-medium text-green-900 mb-2 hidden md:block">
                     Axel Reviron
                 </h1>
-                <h2 class="text-2xl md:text-4xl text-green-800 mb-4 hidden md:block">
+                <h2 class="md:text-2xl text-green-800 mb-4 hidden md:block">
                     Full Stack Web Developer
                 </h2>
-                <p class="text-xl md:text-xl text-green-100 max-w-lg mb-8 leading-relaxed">
+                <p class="text-xl md:text-lg text-green-100 max-w-lg mb-8 leading-5">
                     Dedicated developer focused on crafting clean, secure, and user-friendly digital products.
                     Thrives on continuous learning and crafting quality code.
                     From websites and APIs to web applications and even video games, loves bringing ideas to life !
