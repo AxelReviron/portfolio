@@ -9,17 +9,22 @@ const props = defineProps({
     'isFixed': Boolean,
     'isOtherSection': Boolean
 });
+
 const navItems = [
     { icon: Wrench, label: 'Technologies', href: '#technologies' },
     { icon: Briefcase, label: 'Experiences', href: '#experiences' },
     { icon: Code, label: 'Projects', href: '#projects' },
-    { icon: Mail, label: 'Contact', href: 'mailto:axel-reviron@proton.me' },
+    { icon: Mail, label: 'Contact', href: '#contact' },
     { icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/axel-reviron/' },
     { icon: Github, label: 'GitHub', href: 'https://github.com/AxelReviron' },
 ];
 
-function scrollToSection(id: string): void {
-    gsap.to(window, { duration: 1, scrollTo: id });
+function scrollToSection(link: string): void {
+    if (link.startsWith('#')) {
+        gsap.to(window, { duration: 1, scrollTo: link });
+    } else {
+        window.open(link, '_blank');
+    }
 }
 
 </script>
