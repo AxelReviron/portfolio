@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\TechnologyResource\Pages;
-use App\Filament\Resources\TechnologyResource\RelationManagers;
-use App\Models\Technology;
+use App\Filament\Resources\CategoryResource\Pages;
+use App\Filament\Resources\CategoryResource\RelationManagers;
+use App\Models\Category;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,11 +13,11 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class TechnologyResource extends Resource
+class CategoryResource extends Resource
 {
-    protected static ?string $model = Technology::class;
+    protected static ?string $model = Category::class;
 
-    protected static ?string $navigationIcon = 'heroicon-c-cursor-arrow-ripple';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
@@ -26,15 +26,6 @@ class TechnologyResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('icon')
-                    ->nullable()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('website')
-                    ->nullable()
-                    ->maxLength(255),
-                Forms\Components\Select::make('category')
-                    ->preload()
-                    ->relationship(titleAttribute: 'name')
             ]);
     }
 
@@ -43,13 +34,9 @@ class TechnologyResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id')
-                    ->searchable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->label('ID')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('projects.name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('category.name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -83,9 +70,9 @@ class TechnologyResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListTechnologies::route('/'),
-            'create' => Pages\CreateTechnology::route('/create'),
-            'edit' => Pages\EditTechnology::route('/{record}/edit'),
+            'index' => Pages\ListCategories::route('/'),
+            'create' => Pages\CreateCategory::route('/create'),
+            'edit' => Pages\EditCategory::route('/{record}/edit'),
         ];
     }
 }

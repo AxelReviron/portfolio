@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Project extends Model
+class Category extends Model
 {
     use HasUuids, HasFactory;
 
@@ -18,18 +18,10 @@ class Project extends Model
      */
     protected $fillable = [
         'name',
-        'description',
-        'website',
-        'github_url'
     ];
 
-    public function experiences(): BelongsToMany
+    public function technologies(): HasMany
     {
-        return $this->belongsToMany(Experience::class);
-    }
-
-    public function technologies(): BelongsToMany
-    {
-        return $this->belongsToMany(Technology::class);
+        return $this->hasMany(Technology::class);
     }
 }
