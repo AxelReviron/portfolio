@@ -3,10 +3,11 @@
 namespace Database\Factories;
 
 use App\Models\Category;
+use App\Models\Technology;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Technology>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<Technology>
  */
 class TechnologyFactory extends Factory
 {
@@ -21,7 +22,15 @@ class TechnologyFactory extends Factory
             'name' => $this->faker->word(),
             'icon' => $this->faker->word(),
             'website' => $this->faker->url(),
-            'category_id' => Category::factory()->create()->getKey()
         ];
+    }
+
+    public function configure()
+    {
+        return $this->afterMaking(function (Technology $technology) {
+            if (is_null($technology->category_id)) {
+                $technology->category_id = Category::factory()->create()->getKey();
+            }
+        });
     }
 }
