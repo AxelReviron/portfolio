@@ -16,9 +16,9 @@ const handleScroll = () => {
         navBarFixed.value = false;
     }
 
-    if (otherSection.value === false && (window.innerHeight / scrollY.value) <= 1.1) {
+    if (otherSection.value === false && (window.innerHeight / scrollY.value) <= 1.2) {
         otherSection.value = true;
-    } else if (otherSection.value === true && (window.innerHeight / scrollY.value) > 1.1) {
+    } else if (otherSection.value === true && (window.innerHeight / scrollY.value) > 1.2) {
         otherSection.value = false;
     }
 };
@@ -33,7 +33,10 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <div class="home-section-container min-h-screen flex justify-center items-center relative overflow-hidden flex flex-col gap-8">
+    <div
+        class="home-section-container min-h-screen flex justify-center items-center relative overflow-hidden flex flex-col gap-8"
+        :class="{ 'pb-19': navBarFixed }"
+    >
         <div class="flex flex-col md:flex-row justify-center items-center md:gap-8 z-10">
             <div class="flex flex-col">
                 <h1 class="text-4xl font-medium text-green-900 mb-2 block md:hidden">
