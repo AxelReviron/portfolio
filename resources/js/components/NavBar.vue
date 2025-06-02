@@ -25,7 +25,7 @@ function scrollToSection(id: string): void {
 </script>
 
 <template>
-    <header :class="{ 'fixed top-[92vh] md:top-25 left-1/2 -translate-x-1/2 z-50': props.isFixed }">
+    <header :class="{ 'fixed top-[92vh] md:top-27 left-1/2 -translate-x-1/2 z-50': props.isFixed }">
         <nav class="bg-white/30 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg border border-white/50">
             <ul :class="['flex', 'items-center', 'gap-4', isOtherSection ? 'text-green-700' : 'text-green-100' ]">
                 <li v-for="navItem in navItems" :key="navItem.label" class="cursor-pointer">
