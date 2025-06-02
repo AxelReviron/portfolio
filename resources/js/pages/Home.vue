@@ -1,16 +1,20 @@
 <script setup lang="ts">
 
-import { onMounted, PropType } from 'vue';
+import { PropType } from 'vue';
 import ProjectInterface from '@/interfaces/projectInterface';
 import HomeSection from '@/components/HomeSection.vue';
 import TechnologySection from '@/components/TechnologySection.vue';
 import { Head } from '@inertiajs/vue3'
+import ExperienceSection from '@/components/ExperienceSection.vue';
+import ProjectSection from '@/components/ProjectSection.vue';
+import ContactSection from '@/components/ContactSection.vue';
+import ExperienceInterface from '@/interfaces/experienceInterface';
+import CategoryInterface from '@/interfaces/categoryInterface';
 
-
-const { projects } = defineProps({projects: Array as PropType<ProjectInterface[]>})
-
-onMounted(() => {
-    console.log({projects})
+const { categories, experiences, projects } = defineProps({
+    categories: Array as PropType<CategoryInterface[]>,
+    experiences: Array as PropType<ExperienceInterface[]>,
+    projects: Array as PropType<ProjectInterface[]>
 })
 </script>
 
@@ -21,7 +25,10 @@ onMounted(() => {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     </Head>
     <HomeSection/>
-    <TechnologySection/>
+    <TechnologySection :categories="categories"/>
+    <ExperienceSection :experiences="experiences"/>
+    <ProjectSection :projects="projects"/>
+    <ContactSection />
 </template>
 
 <style scoped>
