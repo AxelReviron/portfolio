@@ -1,16 +1,12 @@
 <script setup lang="ts">
 
-import { onMounted, shallowRef, useTemplateRef } from 'vue';
+import { onMounted, PropType, shallowRef, useTemplateRef } from 'vue';
 import { useIntersectionObserver } from '@vueuse/core';
+import CategoryInterface from '@/interfaces/categoryInterface';
 import TechnologyCard from '@/components/TechnologyCard.vue';
 
-const props = defineProps({
-    category: String,
-    technologies: {
-        label: String,
-        icon: String,
-        website: String
-    }
+const { category } = defineProps({
+    category: Object as PropType<CategoryInterface>
 });
 
 const target = useTemplateRef<HTMLDivElement>('target')
@@ -34,15 +30,18 @@ onMounted(() => {
         }"
     >
         <h2 class="text-xl md:text-2xl font-medium text-green-900 mb-4">
-            {{ props.category }}
+            {{ category.name }}
         </h2>
 
-        <ul class="flex flex-row gap-4 flex-wrap">
+        <ul
+            v-if="category.technologies"
+            class="flex flex-row gap-4 flex-wrap"
+        >
             <li
-                v-for="technology in props.technologies"
-                :key="technology.label"
+                v-for="technology in category.technologies"
+                :key="technology.name"
             >
-                <TechnologyCard :label="technology.label" :icon="technology.icon" :website="technology.website"/>
+                <TechnologyCard :technology="technology" />
             </li>
         </ul>
     </div>
