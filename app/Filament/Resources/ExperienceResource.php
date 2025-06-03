@@ -26,8 +26,8 @@ class ExperienceResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('description')
-                    ->maxLength(255),
+                Forms\Components\RichEditor::make('description')
+                    ->nullable(),
                 Forms\Components\TextInput::make('website')
                     ->maxLength(255),
                 Forms\Components\DatePicker::make('start_date')
