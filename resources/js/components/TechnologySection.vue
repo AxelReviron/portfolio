@@ -7,6 +7,10 @@ import CategoryInterface from '@/interfaces/categoryInterface';
 const { categories } = defineProps({
     categories: Array as PropType<CategoryInterface[]>
 });
+
+const baseDelay = 100;
+const delayIncrement = 150;
+
 </script>
 
 <template>
@@ -20,9 +24,9 @@ const { categories } = defineProps({
             <div class="flex flex-wrap flex-row gap-4 justify-center">
                 <div
                     :key="category.name"
-                    v-for="category in categories"
+                    v-for="(category, index) in categories"
                 >
-                    <TechnologyCategoryCard :category="category"/>
+                    <TechnologyCategoryCard :category="category" :delay="baseDelay + (index * delayIncrement)"/>
                 </div>
             </div>
         </div>
