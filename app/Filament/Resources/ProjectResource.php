@@ -6,6 +6,7 @@ use App\Filament\Resources\ProjectResource\Pages;
 use App\Filament\Resources\ProjectResource\RelationManagers;
 use App\Models\Project;
 use Filament\Forms;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -23,28 +24,90 @@ class ProjectResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\RichEditor::make('description')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('website')
-                    ->nullable()
-                    ->url()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('github_url')
-                    ->nullable()
-                    ->url()
-                    ->maxLength(255),
-                Forms\Components\Select::make('technologies')
-                    ->multiple()
-                    ->preload()
-                    ->relationship(titleAttribute: 'name'),
-                Forms\Components\Select::make('experiences')
-                    ->multiple()
-                    ->preload()
-                    ->relationship(titleAttribute: 'name')
+                Forms\Components\Section::make('General Informations')
+                    ->schema([
+                        Forms\Components\Grid::make()
+                            ->columns([
+                                'sm' => 3,
+                                'xl' => 6,
+                                '2xl' => 8,
+                            ])
+                            ->schema([
+                                Forms\Components\Section::make()
+                                    ->schema([
+                                        Forms\Components\TextInput::make('name')
+                                            ->required()
+                                            ->maxLength(255),
+                                        Forms\Components\TextInput::make('website')
+                                            ->nullable()
+                                            ->url()
+                                            ->maxLength(255),
+                                        Forms\Components\TextInput::make('github_url')
+                                            ->nullable()
+                                            ->url()
+                                            ->maxLength(255),
+                                    ])->columnSpan([
+                                        'sm' => 2,
+                                        'xl' => 3,
+                                        '2xl' => 4,
+                                    ]),
+                                Forms\Components\RichEditor::make('description')
+                                    ->required()
+                                    ->maxLength(255)
+                                    ->grow()
+                                    ->required()
+                                    ->columnSpan([
+                                        'sm' => 2,
+                                        'xl' => 3,
+                                        '2xl' => 4,
+                                    ]),
+                            ])
+                    ])
+                    ->columnSpan([
+                        'sm' => 2,
+                        'xl' => 3,
+                        '2xl' => 4,
+                    ]),
+
+                Forms\Components\Section::make('Relations')
+                    ->schema([
+                        Forms\Components\Grid::make()
+                            ->columns([
+                                'sm' => 3,
+                                'xl' => 6,
+                                '2xl' => 8,
+                            ])
+                            ->schema([
+                                Forms\Components\Section::make()
+                                    ->schema([
+                                        Forms\Components\Select::make('technologies')
+                                            ->required()
+                                            ->multiple()
+                                            ->preload()
+                                            ->relationship(titleAttribute: 'name'),
+                                        Forms\Components\Select::make('experiences')
+                                            ->multiple()
+                                            ->preload()
+                                            ->relationship(titleAttribute: 'name'),
+                                    ])
+                                    ->columnSpan([
+                                        'sm' => 2,
+                                        'xl' => 3,
+                                        '2xl' => 4,
+                                    ]),
+                                SpatieMediaLibraryFileUpload::make('project_image')
+                                    ->required()
+                                    ->columnSpan([
+                                        'sm' => 2,
+                                        'xl' => 3,
+                                        '2xl' => 4,
+                                    ]),
+                            ])
+                    ])->columnSpan([
+                        'sm' => 2,
+                        'xl' => 3,
+                        '2xl' => 4,
+                    ]),
             ]);
     }
 
