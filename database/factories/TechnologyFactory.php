@@ -22,6 +22,7 @@ class TechnologyFactory extends Factory
             'name' => $this->faker->word(),
             'icon' => $this->faker->word(),
             'website' => $this->faker->url(),
+            'is_active' => $this->faker->boolean(),
         ];
     }
 

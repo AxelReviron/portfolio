@@ -21,6 +21,7 @@ class Technology extends Model
         'name',
         'icon',
         'website',
+        'is_active',
         'category_id',
     ];
 

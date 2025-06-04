@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('technologies', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
+            $table->boolean('is_active');
             $table->string('icon')->nullable();
             $table->string('website')->nullable();
             $table->foreignUuid('category_id')->constrained();

@@ -32,6 +32,8 @@ class TechnologyResource extends Resource
                 Forms\Components\TextInput::make('website')
                     ->nullable()
                     ->maxLength(255),
+                Forms\Components\Checkbox::make('is_active')
+                    ->required(),
                 Forms\Components\Select::make('category_id')
                     ->relationship('category', 'name')
                     ->required()
@@ -57,6 +59,8 @@ class TechnologyResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\CheckboxColumn::make('is_active')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()

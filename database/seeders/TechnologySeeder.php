@@ -11,71 +11,96 @@ class TechnologySeeder extends Seeder
 {
     private array $technologies = [
         'Frontend' => [
+            'TypeScript' => [
+                'icon' => 'devicon-typescript-plain colored',
+                'website' => 'https://www.typescriptlang.org/',
+                'is_active' => true,
+            ],
             'VueJS' => [
                 'icon' => 'devicon-vuejs-plain colored',
-                'website' => 'https://vuejs.org/'
+                'website' => 'https://vuejs.org/',
+                'is_active' => true,
             ],
             'Nuxt' => [
                 'icon' => 'devicon-nuxtjs-plain colored',
-                'website' => 'https://nuxt.com/'
+                'website' => 'https://nuxt.com/',
+                'is_active' => true,
             ],
             'Tailwind' => [
                 'icon' => 'devicon-tailwindcss-original colored',
-                'website' => 'https://tailwindcss.com/'
+                'website' => 'https://tailwindcss.com/',
+                'is_active' => true,
+            ],
+            'Plasmo' => [
+                'icon' => null,
+                'website' => 'https://www.plasmo.com/',
+                'is_active' => false,
             ]
         ],
         'Backend' => [
             'Laravel' => [
                 'icon' => 'devicon-laravel-original colored',
-                'website' => 'https://laravel.com/'
+                'website' => 'https://laravel.com/',
+                'is_active' => true,
             ],
             'Node.js' => [
                 'icon' => 'devicon-nodejs-plain-wordmark colored',
-                'website' => 'https://nodejs.org/'
+                'website' => 'https://nodejs.org/',
+                'is_active' => true,
             ],
             'MySQL' => [
                 'icon' => 'devicon-mysql-original colored',
-                'website' => 'https://www.mysql.com/'
+                'website' => 'https://www.mysql.com/',
+                'is_active' => true,
             ],
         ],
         'Tools & Services' => [
             'Git' => [
                 'icon' => 'devicon-git-plain colored',
-                'website' => 'https://git-scm.com/'
+                'website' => 'https://git-scm.com/',
+                'is_active' => true,
             ],
             'Docker' => [
                 'icon' => 'devicon-docker-plain colored',
-                'website' => 'https://www.docker.com/'
+                'website' => 'https://www.docker.com/',
+                'is_active' => true,
             ],
             'Linux' => [
                 'icon' => 'devicon-linux-plain colored',
-                'website' => 'https://www.linux.org/'
+                'website' => 'https://www.linux.org/',
+                'is_active' => true,
             ],
             'Bash' => [
                 'icon' => 'devicon-bash-plain colored',
-                'website' => 'https://www.gnu.org/software/bash/'
+                'website' => 'https://www.gnu.org/software/bash/',
+                'is_active' => true,
             ],
             'Penpot' => [
                 'icon' => null,
-                'website' => 'https://penpot.app/'
+                'website' => 'https://penpot.app/',
+                'is_active' => true,
             ],
             'Inertia' => [
                 'icon' => null,
-                'website' => 'https://inertiajs.com/'
+                'website' => 'https://inertiajs.com/',
+                'is_active' => true,
             ],
         ],
         'Videos Games & Others' => [
             'Godot' => [
                 'icon' => 'devicon-godot-plain colored',
-                'website' => 'https://godotengine.org/'
+                'website' => 'https://godotengine.org/',
+                'is_active' => true,
             ],
             'Blender' => [
                 'icon' => 'devicon-blender-original colored',
-                'website' => 'https://www.blender.org/'
+                'website' => 'https://www.blender.org/',
+                'is_active' => true,
             ],
             'FL Studio' => [
                 'icon' => null,
-                'website' => 'https://www.image-line.com/'
+                'website' => 'https://www.image-line.com/',
+                'is_active' => true,
             ],
         ],
     ];
@@ -91,6 +116,7 @@ class TechnologySeeder extends Seeder
                     'name' => $name,
                     'icon' => $data['icon'],
                     'website' => $data['website'],
+                    'is_active' => $data['is_active'],
                     'category_id' => Category::where('name', $category)->first()->getKey()
                 ]);
             }
