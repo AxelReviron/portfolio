@@ -10,15 +10,15 @@ const otherSection = ref(false);
 const handleScroll = () => {
     scrollY.value = window.scrollY;
 
-    if (navBarFixed.value === false && (window.innerHeight / scrollY.value) <= 1.7) {
+    if (navBarFixed.value === false && (window.innerHeight / scrollY.value) <= 1.5) {
         navBarFixed.value = true;
-    } else if (navBarFixed.value === true && (window.innerHeight / scrollY.value) > 1.7) {
+    } else if (navBarFixed.value === true && (window.innerHeight / scrollY.value) > 1.5) {
         navBarFixed.value = false;
     }
 
-    if (otherSection.value === false && (window.innerHeight / scrollY.value) <= 1.2) {
+    if (otherSection.value === false && (window.innerHeight / scrollY.value) <= 1.1) {
         otherSection.value = true;
-    } else if (otherSection.value === true && (window.innerHeight / scrollY.value) > 1.2) {
+    } else if (otherSection.value === true && (window.innerHeight / scrollY.value) > 1.1) {
         otherSection.value = false;
     }
 };
@@ -58,7 +58,7 @@ onUnmounted(() => {
                 <h2 class="md:text-2xl text-green-800 mb-4 hidden md:block">
                     Full Stack Web Developer
                 </h2>
-                <p class="text-xl md:text-lg text-green-100 max-w-lg mb-8 leading-5">
+                <p class="text-xl md:text-lg text-green-900 max-w-lg font-normal leading-6">
                     Dedicated developer focused on crafting clean, secure, and user-friendly digital products.
                     Thrives on continuous learning and crafting quality code.
                     From websites and APIs to web applications and even video games, loves bringing ideas to life !
