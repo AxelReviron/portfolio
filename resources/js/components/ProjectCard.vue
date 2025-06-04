@@ -10,7 +10,7 @@ const { project } = defineProps({
 </script>
 
 <template>
-    <div class="w-80 md:w-100 flex flex-col bg-white rounded-xl shadow-lg border border-white/50 overflow-hidden">
+    <div class="w-80 md:w-100 flex flex-col bg-white rounded-xl shadow-lg border border-white/50 overflow-hidden pb-1">
         <div class="relative w-full h-50 overflow-hidden rounded-t-xl group mb-4">
             <img
                 v-if="project.media && project.media.length > 0 && project.media[0].original_url"
@@ -28,8 +28,8 @@ const { project } = defineProps({
             >{{ project.description }}</p>
         </div>
 
-        <div class="px-4 mb-4 md:h-38 flex flex-col justify-start">
-            <h3 class="text-xl text-green-700 font-bold mb-4">{{ project.name }}</h3>
+        <div class="px-4 mb-4 md:h-42 flex flex-col justify-start gap-4">
+            <h3 class="text-xl text-green-900 font-bold">{{ project.name }}</h3>
             <p class="md:hidden mb-2">{{ project.description }}</p>
             <ul
                 v-if="project.technologies"

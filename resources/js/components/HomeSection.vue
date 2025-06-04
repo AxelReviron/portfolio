@@ -51,14 +51,14 @@ onUnmounted(() => {
                     alt="picture"
                 />
             </div>
-            <div class="flex flex-col h-70 md:h-100 justify-center items-start gap-2 w-84 md:w-120">
-                <h1 class="md:text-4xl font-medium text-green-900 mb-2 hidden md:block">
+            <div class="flex flex-col h-70 md:h-100 justify-center items-start gap-3 w-84 md:w-120">
+                <h1 class="md:text-4xl font-bold text-green-900 hidden md:block">
                     Axel Reviron
                 </h1>
-                <h2 class="md:text-2xl text-green-800 mb-4 hidden md:block">
+                <h2 class="md:text-[1.6rem] text-green-800 hidden md:block font-medium font-mono">
                     Full Stack Web Developer
                 </h2>
-                <p class="text-xl md:text-lg text-green-200 text-shadow-xs text-shadow-neutral-900 max-w-lg font-normal leading-6">
+                <p class="text-xl md:text-lg text-[#213225] text-shadow-xs max-w-lg font-normal leading-6">
                     Dedicated developer focused on crafting clean, secure, and user-friendly digital products.
                     Thrives on continuous learning and crafting quality code.
                     From websites and APIs to web applications and even video games, loves bringing ideas to life !

@@ -62,6 +62,8 @@ async function handleSubmit(e: Event) {
         }
     }
 }
+
+// TODO: Ajouter une section a coté avec ma photo et les réseaux sociaux
 </script>
 
 <template>
@@ -69,21 +71,21 @@ async function handleSubmit(e: Event) {
     <div id="contact" class="py-42 flex justify-center items-center relative overflow-hidden bg-white">
         <div class="flex flex-col justify-center items-center w-300">
             <Title label="Contact" />
-            <p class="text-lg md:text-xl text-neutral-600 text-center w-sm px-4 md:px-0 md:w-2xl mb-8 leading-relaxed">
+            <p class="text-lg md:text-2xl text-white font-medium text-center w-sm px-4 md:px-0 md:w-2xl mb-8 leading-relaxed">
                 Let's get in touch !
             </p>
 
-            <div class="xs:w-80 border border-green-200 bg-green-50 p-6 rounded-lg">
+            <div class="xs:w-80 border border-green-200 bg-white p-6 rounded-lg">
                 <div class="form-wrapper">
                     <form class="flex flex-col gap-2" name="contact" method="POST" @submit="handleSubmit">
                         <input type="hidden" name="form-name" value="contact" />
                         <div class="flex flex-col mb-2">
-                            <label for="name" class="p-1 font-medium">Name</label>
+                            <label for="name" class="p-1 font-medium text-lg">Name</label>
                             <input
                                 type="text"
                                 v-model="formData.name"
                                 placeholder="Name"
-                                class="w-100 bg-white p-2 rounded-lg"
+                                class="w-100 border border-neutral-200 p-2 rounded-lg"
                                 name="name"
                                 required
                             >
@@ -91,34 +93,34 @@ async function handleSubmit(e: Event) {
                         </div>
 
                         <div class="flex flex-col mb-2">
-                            <label for="email" class="p-1 font-medium">Email</label>
+                            <label for="email" class="p-1 font-medium text-lg">Email</label>
                             <input
                                 type="email"
                                 v-model="formData.email"
                                 placeholder="Email"
                                 name="email"
-                                class="w-100 bg-white p-2 rounded-lg"
+                                class="w-100 border border-neutral-200 p-2 rounded-lg"
                                 required
                             >
                             <div v-if="errors.email" class="text-red-500 text-sm mt-1">{{ errors.email[0] }}</div>
                         </div>
 
                         <div class="flex flex-col mb-2">
-                            <label for="phone" class="p-1 font-medium">Phone</label>
+                            <label for="phone" class="p-1 font-medium text-lg">Phone</label>
                             <input
                                 type="text"
                                 v-model="formData.phone"
                                 placeholder="06 00 00 00 00"
-                                class="w-100 bg-white p-2 rounded-lg"
+                                class="w-100 border border-neutral-200 p-2 rounded-lg"
                                 name="phone" >
                             <div v-if="errors.phone" class="text-red-500 text-sm mt-1">{{ errors.phone[0] }}</div>
                         </div>
 
                         <div class="flex flex-col mb-2">
-                            <label for="message" class="p-1 font-medium">Message</label> <textarea
+                            <label for="message" class="p-1 font-medium text-lg">Message</label> <textarea
                             v-model="formData.message"
                             placeholder="Message"
-                            class="w-100 bg-white p-2 rounded-lg"
+                            class="w-100 border border-neutral-200 p-2 rounded-lg"
                             name="message" required
                         >
                             </textarea>
@@ -201,5 +203,9 @@ async function handleSubmit(e: Event) {
 </template>
 
 <style scoped>
-
+#contact {
+    background-image: url("../../images/abstract-gradient.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 </style>
