@@ -13,8 +13,11 @@ RUN \
 RUN install-php-extensions \
     pcntl \
     pdo_mysql \
-    intl
+    intl \
+    gd
     # Add other PHP extensions here...
+
+COPY uploads.ini /usr/local/etc/php/conf.d/uploads.ini
 
 COPY . /app
 
