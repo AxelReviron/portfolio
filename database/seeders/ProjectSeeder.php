@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Models\Technology;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileCannotBeAdded;
 
 class ProjectSeeder extends Seeder
 {
@@ -15,21 +16,45 @@ class ProjectSeeder extends Seeder
             'description' => 'Personal portfolio',
             'website' => 'https://axel-reviron.fr',
             'github_url' => 'https://github.com/AxelReviron/portfolio',
-            'technologies' => ['TypeScript', 'VueJS', 'Laravel', 'Inertia', 'Tailwind']
+            'technologies' => ['TypeScript', 'VueJS', 'Laravel', 'Inertia', 'Tailwind'],
+            'media' => [
+                [
+                    'path' => 'storage/app/private/seeders/media/projects/portfolio.png',
+                    'collection' => 'cover_images',
+                    'name' => 'portfolio_cover',
+                    'ordre' => 1,
+                ],
+            ]
         ],
         [
             'name' => 'Quentin Salomon',
             'description' => 'Portfolio of Quentin Salomon, a video editor.',
             'website' => 'https://quentin-salomon.fr/',
             'github_url' => null,
-            'technologies' => ['TypeScript', 'VueJS', 'Laravel', 'Inertia', 'Tailwind']
+            'technologies' => ['TypeScript', 'VueJS', 'Laravel', 'Inertia', 'Tailwind'],
+            'media' => [
+                [
+                    'path' => 'storage/app/private/seeders/media/projects/quentin-salomon.png',
+                    'collection' => 'cover_images',
+                    'name' => 'quentin_salomon_cover',
+                    'ordre' => 1,
+                ],
+            ]
         ],
         [
             'name' => 'Hubspot Supercharger',
             'description' => 'Browser extension for HubSpot, add custom logos, distinct color schemes, and menu navigation customization. ',
             'website' => 'https://quentin-salomon.fr/',
             'github_url' => null,
-            'technologies' => ['TypeScript', 'Plasmo', 'Node.js']
+            'technologies' => ['TypeScript', 'Plasmo', 'Node.js'],
+            'media' => [
+                [
+                    'path' => 'storage/app/private/seeders/media/projects/supercharger.jpg',
+                    'collection' => 'cover_images',
+                    'name' => 'supercharger_cover',
+                    'ordre' => 1,
+                ],
+            ]
         ],
     ];
 
@@ -43,7 +68,7 @@ class ProjectSeeder extends Seeder
                 'name' => $projectDatas['name'],
                 'description' => $projectDatas['description'],
                 'website' => $projectDatas['website'],
-                'github_url'=> $projectDatas['github_url'],
+                'github_url' => $projectDatas['github_url'],
             ]);
 
             $technologyIds = Technology::whereIn('name', $projectDatas['technologies'])
@@ -51,6 +76,19 @@ class ProjectSeeder extends Seeder
                 ->toArray();
 
             $project->technologies()->attach($technologyIds);
+
+            if (isset($projectDatas['media']) && is_array($projectDatas['media'])) {
+                foreach ($projectDatas['media'] as $mediaData) {
+                    $mediaPath = base_path($mediaData['path']);
+
+                    if (file_exists($mediaPath)) {
+                        $project->addMedia($mediaPath)
+                            ->preservingOriginal()
+                            ->setFileName($mediaData['name'] . '.' . pathinfo($mediaPath, PATHINFO_EXTENSION))
+                            ->toMediaCollection($mediaData['collection']);
+                    }
+                }
+            }
         }
     }
 }
