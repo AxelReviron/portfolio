@@ -58,7 +58,7 @@ onUnmounted(() => {
                 <h2 class="md:text-2xl text-green-800 mb-4 hidden md:block">
                     Full Stack Web Developer
                 </h2>
-                <p class="text-xl md:text-lg text-green-900 max-w-lg font-normal leading-6">
+                <p class="text-xl md:text-lg text-green-200 text-shadow-xs text-shadow-neutral-900 max-w-lg font-normal leading-6">
                     Dedicated developer focused on crafting clean, secure, and user-friendly digital products.
                     Thrives on continuous learning and crafting quality code.
                     From websites and APIs to web applications and even video games, loves bringing ideas to life !
