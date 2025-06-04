@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\ContactRequestController;
 use App\Http\Controllers\HomeController;
-use App\Models\Project;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::post('/contact', [ContactRequestController::class, 'store'])->name('contact.store');
