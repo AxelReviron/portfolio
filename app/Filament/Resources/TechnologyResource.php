@@ -32,9 +32,11 @@ class TechnologyResource extends Resource
                 Forms\Components\TextInput::make('website')
                     ->nullable()
                     ->maxLength(255),
-                Forms\Components\Select::make('category')
+                Forms\Components\Select::make('category_id')
+                    ->relationship('category', 'name')
+                    ->required()
                     ->preload()
-                    ->relationship(titleAttribute: 'name')
+                    ->searchable()
             ]);
     }
 
