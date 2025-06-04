@@ -12,7 +12,11 @@ class HomeController extends Controller
 {
     public function index(): InertiaResponse
     {
-        $categories = Category::with('technologies')->get();
+        $categories = Category::with([
+            'technologies' => function ($query) {
+                $query->where('is_active', true);
+            }
+        ])->get();
         $experiences = Experience::orderBy('start_date', 'desc')->get();
         $projects = Project::with(['experiences', 'technologies', 'media'])->get();
 
