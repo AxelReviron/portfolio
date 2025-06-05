@@ -75,17 +75,17 @@ async function handleSubmit(e: Event) {
                 Let's get in touch !
             </p>
 
-            <div class="xs:w-80 border border-green-200 bg-white p-6 rounded-lg">
+            <div class="xs:w-80 border border-green-500 bg-white p-6 rounded-lg shadow-lg">
                 <div class="form-wrapper">
                     <form class="flex flex-col gap-2" name="contact" method="POST" @submit="handleSubmit">
                         <input type="hidden" name="form-name" value="contact" />
                         <div class="flex flex-col mb-2">
-                            <label for="name" class="p-1 font-medium text-lg">Name</label>
+                            <label for="name" class="p-1 font-medium text-lg text-green-900">Name</label>
                             <input
                                 type="text"
                                 v-model="formData.name"
                                 placeholder="Name"
-                                class="w-100 border border-neutral-200 p-2 rounded-lg"
+                                class="w-100 border border-green-700 focus:outline-green-800 p-2 rounded-lg text-green-700"
                                 name="name"
                                 required
                             >
@@ -93,34 +93,34 @@ async function handleSubmit(e: Event) {
                         </div>
 
                         <div class="flex flex-col mb-2">
-                            <label for="email" class="p-1 font-medium text-lg">Email</label>
+                            <label for="email" class="p-1 font-medium text-lg  text-green-900">Email</label>
                             <input
                                 type="email"
                                 v-model="formData.email"
                                 placeholder="Email"
                                 name="email"
-                                class="w-100 border border-neutral-200 p-2 rounded-lg"
+                                class="w-100 border border-green-700 focus:outline-green-800 p-2 rounded-lg text-green-700"
                                 required
                             >
                             <div v-if="errors.email" class="text-red-500 text-sm mt-1">{{ errors.email[0] }}</div>
                         </div>
 
                         <div class="flex flex-col mb-2">
-                            <label for="phone" class="p-1 font-medium text-lg">Phone</label>
+                            <label for="phone" class="p-1 font-medium text-lg  text-green-900">Phone</label>
                             <input
                                 type="text"
                                 v-model="formData.phone"
                                 placeholder="06 00 00 00 00"
-                                class="w-100 border border-neutral-200 p-2 rounded-lg"
+                                class="w-100 border border-green-700 focus:outline-green-800 p-2 rounded-lg text-green-700"
                                 name="phone" >
                             <div v-if="errors.phone" class="text-red-500 text-sm mt-1">{{ errors.phone[0] }}</div>
                         </div>
 
                         <div class="flex flex-col mb-2">
-                            <label for="message" class="p-1 font-medium text-lg">Message</label> <textarea
+                            <label for="message" class="p-1 font-medium text-lg  text-green-900">Message</label> <textarea
                             v-model="formData.message"
                             placeholder="Message"
-                            class="w-100 border border-neutral-200 p-2 rounded-lg"
+                            class="w-100 border border-green-700 focus:outline-green-800 p-2 rounded-lg text-green-700"
                             name="message" required
                         >
                             </textarea>
@@ -140,7 +140,7 @@ async function handleSubmit(e: Event) {
 
                         <button
                             type="submit"
-                            class="py-1 border border-green-600 bg-green-500 rounded-lg text-green-50 font-medium cursor-pointer"
+                            class="py-1 border border-green-700 bg-green-600 rounded-lg text-green-50 font-medium cursor-pointer"
                         >
                             Send
                         </button>

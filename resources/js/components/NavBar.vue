@@ -42,9 +42,9 @@ function scrollToSection(link: string): void {
                         <component
                             :is="navItem.icon"
                             stroke-width="2"
-                            class="group-hover:text-green-700 transition-colors"
+                            class="group-hover:text-green-800 transition-colors"
                         />
-                        <span class="text-sm group-hover:text-green-700 transition-colors hidden md:block">
+                        <span class="text-sm group-hover:text-green-800 transition-colors hidden md:block">
                             {{navItem.label}}
                         </span>
                     </a>
