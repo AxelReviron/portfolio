@@ -15,19 +15,20 @@ const navBarFixed = ref(false);
 const otherSection = ref(false);
 const atroposRef = ref<HTMLElement | null>(null);
 
-function handleScroll() {
+function updateNavbarComportment() {
     scrollY.value = window.scrollY;
+    const currentRatio = window.innerHeight / scrollY.value;
 
-    if (navBarFixed.value === false && (window.innerHeight / scrollY.value) <= 1.5) {
+    if (currentRatio <= 1.5) {
         navBarFixed.value = true;
-    } else if (navBarFixed.value === true && (window.innerHeight / scrollY.value) > 1.5) {
+    } else if (currentRatio > 1.5) {
         navBarFixed.value = false;
     }
 
-    if (otherSection.value === false && (window.innerHeight / scrollY.value) <= 1.1) {
-        otherSection.value = true;
-    } else if (otherSection.value === true && (window.innerHeight / scrollY.value) > 1.1) {
+    if (currentRatio <= 0.21) {
         otherSection.value = false;
+    } else {
+        otherSection.value = currentRatio <= 1.1;
     }
 }
 
@@ -66,14 +67,15 @@ function animateTextAndTitles() {
 }
 
 onMounted(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', updateNavbarComportment);
 
     if (atroposRef.value) {
         Atropos({
             el: atroposRef.value,
             duration: 300,
             activeOffset: 50,
-            shadowScale: 1.01,
+            shadowScale: 1.005,
+            shadowOffset: 200,
             highlight: false,
             rotateXInvert: false,
             rotateYInvert: false,
@@ -90,7 +92,7 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-    window.removeEventListener('scroll', handleScroll);
+    window.removeEventListener('scroll', updateNavbarComportment);
 });
 </script>
 
@@ -141,12 +143,6 @@ onUnmounted(() => {
                         Full Stack Web Developer
                     </h2>
                 </div>
-<!--                <p class="splitText text-xl md:text-lg text-[#213225] text-shadow-xs max-w-lg font-normal leading-6">-->
-<!--                    Dedicated developer focused on crafting clean, secure, and user-friendly digital products.-->
-<!--                    Thrives on continuous learning and crafting quality code.-->
-<!--                    From websites and APIs to web applications and even video games, loves bringing ideas to life !-->
-<!--                    Strong belief in data privacy; also enjoys exploring and self-hosting open-source solutions.-->
-<!--                </p>-->
                 <p><span class="typewriter"></span><span class="cursor">▌</span></p>
             </div>
         </div>
