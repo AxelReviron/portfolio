@@ -81,7 +81,6 @@ onMounted(() => {
         });
     }
 })
-// TODO: Ajouter une section a coté avec ma photo et les réseaux sociaux
 </script>
 
 <template>
@@ -91,12 +90,12 @@ onMounted(() => {
             <Title label="Contact" class="mb-8"/>
             <div class="w-95 md:w-200 border border-white/40 bg-white/30 backdrop-blur-lg p-6 rounded-xl shadow-lg flex flex-col md:flex-row gap-8">
                 <!--Image & Socials-->
-                <h2 class="hidden sm:visible text-xl md:text-2xl text-green-700 font-medium mx-auto">
+                <h2 class="hidden sm:visible text-xl md:text-2xl text-green-900 font-medium mx-auto">
                     Let's get in touch !
                 </h2>
                 <div class="flex flex-row-reverse md:flex-col gap-4">
                     <div class="flex flex-col gap-2 justify-between">
-                        <h2 class="xs:hidden text-xl md:text-2xl text-green-700 font-medium">
+                        <h2 class="xs:hidden text-xl md:text-2xl text-green-900 font-medium">
                             Let's get in touch !
                         </h2>
                         <p class="pr-4 w-45 md:w-70 text-sm md:text-lg">
@@ -196,7 +195,7 @@ onMounted(() => {
 
                         <button
                             type="submit"
-                            class="py-1 border border-green-700 bg-green-600 rounded-lg text-green-50 font-medium cursor-pointer"
+                            class="py-1 border border-green-700 bg-green-800 rounded-lg text-green-50 font-medium cursor-pointer"
                         >
                             Send
                         </button>
