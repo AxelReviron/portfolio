@@ -30,13 +30,11 @@ RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-COPY composer.json composer.lock ./
+COPY . /app
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
 RUN npm ci
-
-COPY . /app
 
 RUN npm run build
 
