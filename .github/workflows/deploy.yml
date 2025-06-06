@@ -35,14 +35,26 @@ jobs:
             echo "Building frontend assets..."
             npm run build
 
+            echo "Stopping containers gracefully..."
+            docker compose -f docker-compose.prod.yml down
+
+            echo "Building Docker images..."
+            docker compose -f docker-compose.prod.yml build --no-cache
+
+            echo "Starting services..."
+            docker compose -f docker-compose.prod.yml up -d
+
+            echo "Waiting for services to be ready..."
+            sleep 10
+
             echo "Running database migrations..."
-            php artisan migrate --force
+            docker compose -f docker-compose.prod.yml exec -T frankenphp php artisan migrate --force
 
             echo "Clearing and caching Laravel configurations..."
-            php artisan optimize:clear
-            php artisan optimize
+            docker compose -f docker-compose.prod.yml exec -T frankenphp php artisan optimize:clear
+            docker compose -f docker-compose.prod.yml exec -T frankenphp php artisan optimize
 
-            echo "Managing Docker Compose services..."
-            docker compose restart
+            echo "Creating storage link..."
+            docker compose -f docker-compose.prod.yml exec -T frankenphp php artisan storage:link
 
             echo "Deployment complete!"

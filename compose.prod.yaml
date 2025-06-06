@@ -1,0 +1,39 @@
+services:
+  frankenphp:
+    container_name: portfolio_app
+    build:
+      context: .
+    entrypoint: php artisan octane:frankenphp --workers=1 --max-requests=1
+    ports:
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+      - ./storage:/app/storage
+    depends_on:
+      - mysql
+    restart: unless-stopped
+    networks:
+      - portfolio_network
+  mysql:
+    container_name: portfolio_db
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - portfolio_network
+volumes:
+  caddy_data:
+  caddy_config:
+  db_data:
+
+networks:
+  portfolio_network:
+    driver: bridge

@@ -23,6 +23,14 @@ COPY uploads.ini /usr/local/etc/php/conf.d/uploads.ini
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
+COPY composer.json composer.lock ./
+
+RUN composer install --no-dev --optimize-autoloader --no-interaction
+
 COPY . /app
+
+RUN chown -R ${USER}:${USER} /app
+
+USER ${USER}
 
 ENTRYPOINT ["php", "artisan", "octane:frankenphp"]

@@ -5,23 +5,21 @@ services:
       context: .
     entrypoint: php artisan octane:frankenphp --workers=1 --max-requests=1
     ports:
-      #- "80:8000" # HTTP
-      - "443:443" # HTTPS
-      - "443:443/udp" # HTTP/3
+      - "80:8000" # For dev only
     volumes:
-      - .:/app
+      - .:/app # For dev only
       - caddy_data:/data
       - caddy_config:/config
     depends_on:
       - mysql
-    tty: false # comment this line in production, it allows to have nice human-readable logs in dev
+    tty: false
     networks:
       - portfolio_network
   mysql:
     container_name: portfolio_db
     image: mysql:8.0
     ports:
-      #- "3306:3306" # Only for local dev
+      - "3306:3306" # Only for local dev
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
       MYSQL_DATABASE: ${DB_DATABASE}
