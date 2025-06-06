@@ -23,6 +23,8 @@ RUN install-php-extensions \
 
 COPY uploads.ini /usr/local/etc/php/conf.d/uploads.ini
 
+COPY Caddyfile /etc/caddy/Caddyfile
+
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
