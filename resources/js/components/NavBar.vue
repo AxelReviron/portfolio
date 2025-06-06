@@ -21,7 +21,7 @@ const props = defineProps({
 
 const navItems = [
     { icon: Wrench, label: t("technology.title"), href: '#technologies' },
-    { icon: Briefcase, label: t("technology.title"), href: '#experiences' },
+    { icon: Briefcase, label: t("experience.title"), href: '#experiences' },
     { icon: Code, label: t("project.title"), href: '#projects' },
     { icon: Mail, label: t("contact.title"), href: '#contact' },
     { icon: Linkedin, label: t("socials.linkedin"), href: 'https://www.linkedin.com/in/axel-reviron/' },
