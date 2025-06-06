@@ -4,6 +4,9 @@ import { PropType, ref } from 'vue';
 import ProjectInterface from '@/interfaces/projectInterface';
 import ProjectCard from '@/components/ProjectCard.vue';
 import useOnceInView from '@/composables/useItemsOnceInView';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n()
 
 const { projects } = defineProps({
     projects: Array as PropType<ProjectInterface[]>,
@@ -22,9 +25,9 @@ useOnceInView(projectRefs, itemHasBeenSeen);
 
     <div id="projects" class="py-24 md:py-42 flex justify-center items-center relative overflow-hidden bg-green-50">
         <div class="flex flex-col justify-center items-center w-400">
-            <Title label="Projects"/>
+            <Title :label="t('project.title')"/>
             <p class="text-lg md:text-xl text-neutral-600 text-center w-sm px-4 md:px-0 md:w-2xl mb-8 leading-relaxed">
-                A selection of my recent work, showcasing my expertise in full-stack development and problem-solving abilities.
+                {{ $t("project.text") }}
             </p>
             <ul class="flex justify-center flex-wrap flex-row gap-8">
                <li

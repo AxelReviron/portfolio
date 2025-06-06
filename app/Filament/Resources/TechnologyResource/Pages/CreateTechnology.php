@@ -8,14 +8,6 @@ use Filament\Resources\Pages\CreateRecord;
 
 class CreateTechnology extends CreateRecord
 {
-    use CreateRecord\Concerns\Translatable;
-
     protected static string $resource = TechnologyResource::class;
 
-    protected function getHeaderActions(): array
-    {
-        return [
-            Actions\LocaleSwitcher::make(),
-        ];
-    }
 }

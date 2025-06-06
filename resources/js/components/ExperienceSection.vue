@@ -6,9 +6,12 @@ import { ExternalLink } from 'lucide-vue-next';
 import useOnceInView from '@/composables/useItemsOnceInView';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { gsap } from "gsap";
+import { useI18n } from 'vue-i18n';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const { t } = useI18n()
+const currentLocale = useI18n().locale;
 
 const { experiences } = defineProps({
     experiences: Array as PropType<ExperienceInterface[]>,
@@ -24,10 +27,14 @@ const delayIncrement = 150;
 
 useOnceInView(experienceRefs, itemHasBeenSeen);
 
+function capitalizeFirstLetter(string) {
+    return string[0].toUpperCase() + string.slice(1);
+}
+
 function formatExperiencePeriod(startDateString: string, endDateString: string | null): string {
     const options: Intl.DateTimeFormatOptions = { month: 'short', year: 'numeric' };
     const startDate = new Date(startDateString);
-    const formattedStart = startDate.toLocaleString('en-US', options);
+    const formattedStart = capitalizeFirstLetter(startDate.toLocaleString(currentLocale.value === 'en' ? 'en-US' : 'fr-FR', options));
 
     if (!endDateString) {
         return `${formattedStart} - Present`;
@@ -41,7 +48,7 @@ function formatExperiencePeriod(startDateString: string, endDateString: string |
         return formattedStart;
     }
 
-    const formattedEnd = endDate.toLocaleString('en-US', options);
+    const formattedEnd = capitalizeFirstLetter(endDate.toLocaleString(currentLocale.value === 'en' ? 'en-US' : 'fr-FR', options));
     return `${formattedStart} - ${formattedEnd}`;
 }
 
@@ -86,7 +93,7 @@ onMounted(() => {
 
     <div id="experiences" class="py-24 md:py-42 flex justify-center items-center relative overflow-hidden bg-white">
         <div class="flex flex-col justify-center items-center w-300">
-            <Title label="Experiences" />
+            <Title :label="t('experience.title')" />
             <div class="list-wrapper relative">
                 <div class="timeline absolute bg-green-200 w-2 top-10 left-[1.15rem] rounded-xl"></div>
                 <ul class="mx-6 md:mr-0 mt-8 flex flex-col justify-start">

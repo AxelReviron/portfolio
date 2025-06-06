@@ -4,9 +4,12 @@ import { onMounted, ref } from 'vue';
 import axios from 'axios';
 import { usePage } from '@inertiajs/vue3';
 import Atropos from 'atropos';
+import { useI18n } from 'vue-i18n';
 
 const page = usePage()
 const atroposRef = ref<HTMLElement | null>(null);
+const { t } = useI18n()
+const currentLocale = useI18n().locale;
 
 const formData = ref({
     name: '',
@@ -41,7 +44,7 @@ async function handleSubmit(e: Event) {
     errors.value = {};
 
     try {
-        await axios.post('/contact', {
+        await axios.post(`${currentLocale.value}/contact`, {
             _token: page.props.csrf_token,
             ...formData.value
         });
@@ -54,13 +57,13 @@ async function handleSubmit(e: Event) {
             consent: false
         };
 
-        showNotification('Message sent with success !', 'success');
+        showNotification(t("contact.notification.success"), 'success');
     } catch (error: any) {
         if (error.response && error.response.status === 422) {// Validation errors
             errors.value = error.response.data.errors;
-            showNotification('Please correct the errors in the form.', 'error');
+            showNotification(t("contact.notification.error.form"), 'error');
         } else {// Other errors
-            showNotification('An unexpected error occurred. Please try again.', 'error');
+            showNotification(t("contact.notification.error.server"), 'error');
         }
     }
 }
@@ -87,23 +90,32 @@ onMounted(() => {
 
     <div id="contact" class="py-42 flex justify-center items-center relative overflow-hidden">
         <div class="flex flex-col justify-center items-center w-300">
-            <Title label="Contact" class="mb-8"/>
+            <Title :label="$t('contact.title')" class="mb-8"/>
             <div class="w-95 md:w-200 border border-white/40 bg-white/30 backdrop-blur-lg p-6 rounded-xl shadow-lg flex flex-col md:flex-row gap-8">
                 <!--Image & Socials-->
                 <h2 class="hidden sm:visible text-xl md:text-2xl text-green-900 font-medium mx-auto">
-                    Let's get in touch !
+                    {{ $t("contact.subtitle") }}
                 </h2>
                 <div class="flex flex-row-reverse md:flex-col gap-4">
                     <div class="flex flex-col gap-2 justify-between">
                         <h2 class="xs:hidden text-xl md:text-2xl text-green-900 font-medium">
-                            Let's get in touch !
+                            {{ $t("contact.subtitle") }}
                         </h2>
                         <p class="pr-4 w-45 md:w-70 text-sm md:text-lg">
-                            Whether you have a project in mind, a question about my work, or just want to connect, I'd love to hear from you.
-                            Fill out the form, or reach out directly through
-                            <a href="https://www.linkedin.com/in/axel-reviron/"><span class="text-green-800 font-medium">LinkedIn</span></a> or
-                            <a href="mailto:axel-reviron@gmail.com"><span class="text-green-800 font-medium">Email</span></a>.
+                            <i18n-t keypath="contact.text" tag="span">
+                                <template #linkedin_link>
+                                    <a href="https://www.linkedin.com/in/axel-reviron/" target="_blank">
+                                        <span class="text-green-800 font-medium">{{ t('socials.linkedin') }}</span>
+                                    </a>
+                                </template>
+                                <template #email_link>
+                                    <a href="mailto:axel-reviron@gmail.com">
+                                        <span class="text-green-800 font-medium">{{ t('socials.email') }}</span>
+                                    </a>
+                                </template>
+                            </i18n-t>
                         </p>
+
                     </div>
                     <div
                         class="atropos my-atropos w-38 md:w-64"
@@ -135,11 +147,11 @@ onMounted(() => {
                     <form class="flex flex-col gap-2" name="contact" method="POST" @submit="handleSubmit">
                         <input type="hidden" name="form-name" value="contact" />
                         <div class="flex flex-col mb-2">
-                            <label for="name" class="p-1 font-medium text-lg text-green-900">Name</label>
+                            <label for="name" class="p-1 font-medium text-lg text-green-900">{{ $t("contact.name") }}</label>
                             <input
                                 type="text"
                                 v-model="formData.name"
-                                placeholder="Name"
+                                :placeholder="t('contact.name')"
                                 class="w-80 md:w-100 bg-white/30 border border-green-700 focus:outline-green-800 p-2 rounded-lg text-green-700"
                                 name="name"
                                 required
@@ -148,11 +160,11 @@ onMounted(() => {
                         </div>
 
                         <div class="flex flex-col mb-2">
-                            <label for="email" class="p-1 font-medium text-lg  text-green-900">Email</label>
+                            <label for="email" class="p-1 font-medium text-lg  text-green-900">{{ $t("socials.email") }}</label>
                             <input
                                 type="email"
                                 v-model="formData.email"
-                                placeholder="Email"
+                                :placeholder="t('socials.email')"
                                 name="email"
                                 class="w-80 md:w-100 bg-white/30 border border-green-700 focus:outline-green-800 p-2 rounded-lg text-green-700"
                                 required
@@ -161,20 +173,21 @@ onMounted(() => {
                         </div>
 
                         <div class="flex flex-col mb-2">
-                            <label for="phone" class="p-1 font-medium text-lg  text-green-900">Phone</label>
+                            <label for="phone" class="p-1 font-medium text-lg  text-green-900">{{ $t("contact.phone") }}</label>
                             <input
                                 type="text"
                                 v-model="formData.phone"
                                 placeholder="06 00 00 00 00"
                                 class="w-80 md:w-100 bg-white/30 border border-green-700 focus:outline-green-800 p-2 rounded-lg text-green-700"
-                                name="phone" >
+                                name="phone"
+                            >
                             <div v-if="errors.phone" class="text-red-500 text-sm mt-1">{{ errors.phone[0] }}</div>
                         </div>
 
                         <div class="flex flex-col mb-2">
-                            <label for="message" class="p-1 font-medium text-lg  text-green-900">Message</label> <textarea
+                            <label for="message" class="p-1 font-medium text-lg text-green-900">{{ $t("contact.message") }}</label> <textarea
                             v-model="formData.message"
-                            placeholder="Message"
+                            :placeholder="t('contact.message')"
                             class="w-80 md:w-100 bg-white/30 border border-green-700 focus:outline-green-800 p-2 rounded-lg text-green-700"
                             name="message" required
                         >
@@ -189,7 +202,7 @@ onMounted(() => {
                                 required
                                 name="consent"
                             >
-                            <label for="consent" class="text-sm font-normal">I agree that my data may be used to contact me</label>
+                            <label for="consent" class="text-sm font-normal text-green-800">{{ $t("contact.consent") }}</label>
                             <div v-if="errors.consent" class="text-red-500 text-sm mt-1">{{ errors.consent[0] }}</div>
                         </div>
 
@@ -197,7 +210,7 @@ onMounted(() => {
                             type="submit"
                             class="py-1 border border-green-700 bg-green-800 rounded-lg text-green-50 font-medium cursor-pointer"
                         >
-                            Send
+                            {{ $t("contact.send") }}
                         </button>
                     </form>
 
@@ -240,18 +253,6 @@ onMounted(() => {
                         </div>
                     </div>
                     <div class="ms-3 text-sm font-normal">{{ notification.message }}</div>
-                    <button
-                        type="button"
-                        class="cursor-pointer ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-neutral-50 inline-flex items-center justify-center h-8 w-8"
-                        :class="{ 'text-green-600': notification.type === 'success', 'text-red-600': notification.type === 'error' }"
-                        data-dismiss-target="#toast-default" aria-label="Close"
-                        @click="() => {notification.value.show = false}"
-                    >
-                        <span class="sr-only">Close</span>
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                        </svg>
-                    </button>
                 </div>
             </Transition>
         </div>

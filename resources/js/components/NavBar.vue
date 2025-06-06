@@ -6,6 +6,7 @@ import { router } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
 
 gsap.registerPlugin(ScrollToPlugin);
+const { t } = useI18n()
 
 const currentLocale = useI18n().locale;
 const localeToFlag = {
@@ -19,12 +20,12 @@ const props = defineProps({
 });
 
 const navItems = [
-    { icon: Wrench, label: 'Technologies', href: '#technologies' },
-    { icon: Briefcase, label: 'Experiences', href: '#experiences' },
-    { icon: Code, label: 'Projects', href: '#projects' },
-    { icon: Mail, label: 'Contact', href: '#contact' },
-    { icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/axel-reviron/' },
-    { icon: Github, label: 'GitHub', href: 'https://github.com/AxelReviron' },
+    { icon: Wrench, label: t("technology.title"), href: '#technologies' },
+    { icon: Briefcase, label: t("technology.title"), href: '#experiences' },
+    { icon: Code, label: t("project.title"), href: '#projects' },
+    { icon: Mail, label: t("contact.title"), href: '#contact' },
+    { icon: Linkedin, label: t("socials.linkedin"), href: 'https://www.linkedin.com/in/axel-reviron/' },
+    { icon: Github, label: t("socials.github"), href: 'https://github.com/AxelReviron' },
 ];
 
 function scrollToSection(link: string): void {
@@ -36,9 +37,7 @@ function scrollToSection(link: string): void {
 }
 
 function changeLocale(newLocale: string): void {
-    console.log('change local')
     if (newLocale === currentLocale.value) {
-        console.log('ppl')
         return;
     }
 
@@ -72,15 +71,16 @@ function changeLocale(newLocale: string): void {
                         </span>
                     </a>
                 </li>
-                <li v-for="(flagCode, locale) in localeToFlag" :key="locale" class="cursor-pointer">
-                    <button
-                        @click="changeLocale(locale)"
-                        class="cursor-pointer"
-                        :class="locale === currentLocale ? 'grayscale-0' : 'grayscale'"
-                    >
-                        <span :class="`fi fi-${flagCode}`"></span>
-                    </button>
-                </li>
+                <template v-for="(flagCode, locale) in localeToFlag" :key="locale">
+                    <li class="cursor-pointer" v-if="locale !== currentLocale">
+                        <button
+                            @click="changeLocale(locale)"
+                            class="cursor-pointer"
+                        >
+                            <span :class="`fi fi-${flagCode}`"></span>
+                        </button>
+                    </li>
+                </template>
             </ul>
         </nav>
     </header>

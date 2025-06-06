@@ -16,8 +16,6 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class TechnologyResource extends Resource
 {
-    use Translatable;
-
     protected static ?string $model = Technology::class;
 
     protected static ?string $navigationIcon = 'heroicon-c-cursor-arrow-ripple';
@@ -36,7 +34,7 @@ class TechnologyResource extends Resource
                     ->nullable()
                     ->maxLength(255),
                 Forms\Components\Checkbox::make('is_active')
-                    ->required(),
+                    ->nullable(),
                 Forms\Components\Select::make('category_id')
                     ->relationship('category', 'name')
                     ->required()

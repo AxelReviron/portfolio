@@ -11,6 +11,5 @@ Route::get('/', function () {
 
 Route::prefix('{locale}')->middleware(HandleLocale::class)->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::post('/contact', [ContactRequestController::class, 'store'])->name('contact.store');
 });
-
-Route::post('/contact', [ContactRequestController::class, 'store'])->name('contact.store');

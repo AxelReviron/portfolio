@@ -50,10 +50,7 @@ function animateTextAndTitles() {
 
     gsap.to('.typewriter', {
         delay: 2,
-        text : "Dedicated developer focused on crafting clean, secure, and user-friendly digital products.\n" +
-            "Thrives on continuous learning and crafting quality code.\n" +
-            "From websites and APIs to web applications and even video games, loves bringing ideas to life !\n" +
-            "Strong belief in data privacy; also enjoys exploring and self-hosting open-source solutions.",
+        text: t("home.description"),
         duration: 5,
         autoAlpha: 1,
         ease :  'none'
@@ -161,18 +158,17 @@ onUnmounted(() => {
 }
 
 .my-atropos {
-    width: 21rem; /* Equivalent de w-84 */
-    height: 21rem; /* Assure que le conteneur Atropos a une taille définie */
+    width: 21rem;
+    height: 21rem;
 }
 
 @media (min-width: 768px) {
     .my-atropos {
-        width: 16rem; /* Equivalent de md:w-64 */
+        width: 16rem;
         height: 16rem;
     }
 }
 
-/* S'assurer que l'image à l'intérieur d'Atropos remplit le conteneur */
 .my-atropos img {
     width: 100%;
     height: 100%;
