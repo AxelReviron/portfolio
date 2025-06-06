@@ -1,5 +1,7 @@
 FROM dunglas/frankenphp
 
+ENV SERVER_NAME=axel-reviron.fr
+
 ARG USER=appuser
 
 RUN \
@@ -18,6 +20,8 @@ RUN install-php-extensions \
     # Add other PHP extensions here...
 
 COPY uploads.ini /usr/local/etc/php/conf.d/uploads.ini
+
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 COPY . /app
 
