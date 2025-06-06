@@ -21,40 +21,33 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
+            set -e
+
             cd ${{ secrets.TARGET_DIR }} || exit 1
 
             echo "Pulling latest code..."
             git pull origin main
 
-            echo "Installing/updating PHP dependencies..."
-            composer install --no-dev --prefer-dist --optimize-autoloader
-
-            echo "Installing/updating Node.js dependencies..."
-            npm install
-
-            echo "Building frontend assets..."
-            npm run build
-
             echo "Stopping containers gracefully..."
-            docker compose -f docker-compose.prod.yml down
+            docker compose -f compose.prod.yaml down
 
             echo "Building Docker images..."
-            docker compose -f docker-compose.prod.yml build --no-cache
+            docker compose -f compose.prod.yaml build --no-cache
 
             echo "Starting services..."
-            docker compose -f docker-compose.prod.yml up -d
+            docker compose -f compose.prod.yaml up -d
 
             echo "Waiting for services to be ready..."
             sleep 10
 
             echo "Running database migrations..."
-            docker compose -f docker-compose.prod.yml exec -T frankenphp php artisan migrate --force
+            docker compose -f compose.prod.yaml exec -T frankenphp php artisan migrate --force
 
             echo "Clearing and caching Laravel configurations..."
-            docker compose -f docker-compose.prod.yml exec -T frankenphp php artisan optimize:clear
-            docker compose -f docker-compose.prod.yml exec -T frankenphp php artisan optimize
+            docker compose -f compose.prod.yaml exec -T frankenphp php artisan optimize:clear
+            docker compose -f compose.prod.yaml exec -T frankenphp php artisan optimize
 
             echo "Creating storage link..."
-            docker compose -f docker-compose.prod.yml exec -T frankenphp php artisan storage:link
+            docker compose -f compose.prod.yaml exec -T frankenphp php artisan storage:link
 
             echo "Deployment complete!"
