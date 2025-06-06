@@ -42,7 +42,7 @@ createInertiaApp({
         const plausibleScript = document.createElement('script')
         plausibleScript.setAttribute('defer', '')
         plausibleScript.setAttribute('data-domain', 'axel-reviron.fr')
-        plausibleScript.src = 'https://plausible.nizukameha.xyz/js/script.js'
+        plausibleScript.src = 'https://plausible.nizukameha.xyz/js/script.hash.outbound-links.tagged-events.js'
         document.head.appendChild(plausibleScript)
 
         return createApp({ render: () => h(App, props) })
