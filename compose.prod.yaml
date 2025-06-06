@@ -3,7 +3,7 @@ services:
     container_name: portfolio_app
     build:
       context: .
-    entrypoint: php artisan octane:frankenphp --workers=1 --max-requests=1
+    entrypoint: php artisan octane:frankenphp --caddyfile=./Caddyfile --workers=1 --max-requests=1
     ports:
       - "80:80"
       - "443:443"
