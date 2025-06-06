@@ -23,11 +23,18 @@ COPY uploads.ini /usr/local/etc/php/conf.d/uploads.ini
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
+    && apt-get install -y nodejs
+
 COPY composer.json composer.lock ./
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
+RUN npm ci
+
 COPY . /app
+
+RUN npm run build
 
 RUN chown -R ${USER}:${USER} /app
 
