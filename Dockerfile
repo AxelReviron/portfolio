@@ -16,7 +16,9 @@ RUN install-php-extensions \
     pcntl \
     pdo_mysql \
     intl \
-    gd
+    gd \
+    zip \
+    exif
     # Add other PHP extensions here...
 
 COPY uploads.ini /usr/local/etc/php/conf.d/uploads.ini
