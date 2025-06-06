@@ -38,6 +38,13 @@ createInertiaApp({
             legacy: false,
             globalInjection: true,
         })
+
+        const plausibleScript = document.createElement('script')
+        plausibleScript.setAttribute('defer', '')
+        plausibleScript.setAttribute('data-domain', 'axel-reviron.fr')
+        plausibleScript.src = 'https://plausible.nizukameha.xyz/js/script.js'
+        document.head.appendChild(plausibleScript)
+
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(i18n)

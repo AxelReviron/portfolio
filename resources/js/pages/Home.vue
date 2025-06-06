@@ -25,7 +25,6 @@ const { categories, experiences, projects } = defineProps({
         <meta name="description" content="Fullstack Web Developer">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css" />
-        <script defer data-domain="axel-reviron.fr" src="https://plausible.nizukameha.xyz/js/script.js"></script>
     </Head>
     <HomeSection/>
     <TechnologySection :categories="categories.data"/>
