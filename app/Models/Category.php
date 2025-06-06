@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\Translatable\HasTranslations;
 
 class Category extends Model
 {
-    use HasUuids, HasFactory;
+    use HasUuids, HasFactory, HasTranslations;
 
     /**
      * The attributes that are mass assignable.
@@ -17,6 +18,10 @@ class Category extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'name',
+    ];
+
+    public array $translatable = [
         'name',
     ];
 

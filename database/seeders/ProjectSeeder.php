@@ -12,8 +12,14 @@ class ProjectSeeder extends Seeder
 {
     private array $projects = [
         [
-            'name' => 'Portfolio',
-            'description' => 'Personal portfolio',
+            'name' => [
+                'en' => 'Portfolio',
+                'fr' => 'Portfolio',
+            ],
+            'description' => [
+                'en' => 'Personal portfolio',
+                'fr' => 'Portfolio personnel',
+            ],
             'website' => 'https://axel-reviron.fr',
             'github_url' => 'https://github.com/AxelReviron/portfolio',
             'technologies' => ['TypeScript', 'VueJS', 'Laravel', 'Inertia', 'Tailwind'],
@@ -22,13 +28,18 @@ class ProjectSeeder extends Seeder
                     'path' => 'storage/app/private/seeders/media/projects/portfolio.png',
                     'collection' => 'cover_images',
                     'name' => 'portfolio_cover',
-                    'ordre' => 1,
                 ],
             ]
         ],
         [
-            'name' => 'Quentin Salomon',
-            'description' => 'Portfolio of Quentin Salomon, a video editor.',
+            'name' => [
+                'en' => 'Quentin Salomon',
+                'fr' => 'Quentin Salomon',
+            ],
+            'description' => [
+                'en' => 'Portfolio of Quentin Salomon, a video editor.',
+                'fr' => 'Portfolio de Quentin Salomon, un monteur vidéo.',
+            ],
             'website' => 'https://quentin-salomon.fr/',
             'github_url' => null,
             'technologies' => ['TypeScript', 'VueJS', 'Laravel', 'Inertia', 'Tailwind'],
@@ -37,14 +48,19 @@ class ProjectSeeder extends Seeder
                     'path' => 'storage/app/private/seeders/media/projects/quentin-salomon.png',
                     'collection' => 'cover_images',
                     'name' => 'quentin_salomon_cover',
-                    'ordre' => 1,
                 ],
             ]
         ],
         [
-            'name' => 'Hubspot Supercharger',
-            'description' => 'Browser extension for HubSpot, add custom logos, distinct color schemes, and menu navigation customization. ',
-            'website' => 'https://quentin-salomon.fr/',
+            'name' => [
+                'en' => 'Hubspot Supercharger - Browser Extension',
+                'fr' => 'Hubspot Supercharger - Extension de Navigateur',
+            ],
+            'description' => [
+                'en' => 'Browser extension for HubSpot, add custom logos, distinct color schemes, and menu navigation customization.',
+                'fr' => 'Extension de navigateur pour HubSpot, ajouter des logos personnalisés, des schémas de couleurs, et la personnalisation du menu de navigation.'
+            ],
+            'website' => 'https://chromewebstore.google.com/detail/hubspot-supercharger/pgnnijfjmonogolbphlhldecnjcnbolp?hl=fr',
             'github_url' => null,
             'technologies' => ['TypeScript', 'Plasmo', 'Node.js'],
             'media' => [
@@ -52,7 +68,6 @@ class ProjectSeeder extends Seeder
                     'path' => 'storage/app/private/seeders/media/projects/supercharger.jpg',
                     'collection' => 'cover_images',
                     'name' => 'supercharger_cover',
-                    'ordre' => 1,
                 ],
             ]
         ],

@@ -7,6 +7,7 @@ use App\Filament\Resources\TechnologyResource\RelationManagers;
 use App\Models\Technology;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -15,6 +16,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class TechnologyResource extends Resource
 {
+    use Translatable;
+
     protected static ?string $model = Technology::class;
 
     protected static ?string $navigationIcon = 'heroicon-c-cursor-arrow-ripple';
@@ -47,6 +50,7 @@ class TechnologyResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id')
+                    ->label('ID')
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('name')

@@ -117,7 +117,7 @@ class TechnologySeeder extends Seeder
                     'icon' => $data['icon'],
                     'website' => $data['website'],
                     'is_active' => $data['is_active'],
-                    'category_id' => Category::where('name', $category)->first()->getKey()
+                    'category_id' => Category::whereJsonContainsLocale('name', 'en', $category)->first()->getKey()
                 ]);
             }
         }

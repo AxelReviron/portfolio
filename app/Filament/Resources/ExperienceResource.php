@@ -7,6 +7,7 @@ use App\Filament\Resources\ExperienceResource\RelationManagers;
 use App\Models\Experience;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -15,6 +16,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ExperienceResource extends Resource
 {
+    use Translatable;
+
     protected static ?string $model = Experience::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
@@ -51,8 +54,11 @@ class ExperienceResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('description')
+                    ->html()
+                    ->limit()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('website')
+                    ->url(fn (string $state): string => $state)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('start_date')
                     ->date()

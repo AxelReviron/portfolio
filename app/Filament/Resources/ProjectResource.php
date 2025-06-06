@@ -7,12 +7,15 @@ use App\Models\Project;
 use Filament\Forms;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
+use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
 class ProjectResource extends Resource
 {
+    use Translatable;
+
     protected static ?string $model = Project::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-code-bracket-square';
@@ -113,14 +116,21 @@ class ProjectResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                Tables\Columns\TextColumn::make('id')
+                    ->label('ID')
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('description')
+                    ->html()
+                    ->limit()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('website')
+                    ->url(fn (string $state): string => $state)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('github_url')
+                    ->url(fn (?string $state): string => $state ? $state : '')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('technologies.name')
                     ->searchable(),

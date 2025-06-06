@@ -16,9 +16,11 @@ class HomeController extends Controller
             'technologies' => function ($query) {
                 $query->where('is_active', true);
             }
-        ])->get();
-        $experiences = Experience::orderBy('start_date', 'desc')->get();
-        $projects = Project::with(['experiences', 'technologies', 'media'])->get();
+        ])->get()->toResourceCollection();
+
+        $experiences = Experience::orderBy('start_date', 'desc')->get()->toResourceCollection();
+
+        $projects = Project::with(['experiences', 'technologies', 'media'])->get()->toResourceCollection();
 
         return Inertia::render('Home', [
             'categories' => $categories,

@@ -2,8 +2,16 @@
 import { Briefcase, Code, Github, Linkedin, Mail, Wrench } from 'lucide-vue-next';
 import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { router } from '@inertiajs/vue3';
+import { useI18n } from 'vue-i18n';
 
 gsap.registerPlugin(ScrollToPlugin);
+
+const currentLocale = useI18n().locale;
+const localeToFlag = {
+    'en': 'us',
+    'fr': 'fr',
+};
 
 const props = defineProps({
     'isFixed': Boolean,
@@ -27,6 +35,21 @@ function scrollToSection(link: string): void {
     }
 }
 
+function changeLocale(newLocale: string): void {
+    console.log('change local')
+    if (newLocale === currentLocale.value) {
+        console.log('ppl')
+        return;
+    }
+
+    currentLocale.value = newLocale;
+
+    router.get(route('home', { locale: newLocale }), {}, {
+        preserveScroll: true,
+        preserveState: false,
+    });
+}
+
 </script>
 
 <template>
@@ -48,6 +71,15 @@ function scrollToSection(link: string): void {
                             {{navItem.label}}
                         </span>
                     </a>
+                </li>
+                <li v-for="(flagCode, locale) in localeToFlag" :key="locale" class="cursor-pointer">
+                    <button
+                        @click="changeLocale(locale)"
+                        class="cursor-pointer"
+                        :class="locale === currentLocale ? 'grayscale-0' : 'grayscale'"
+                    >
+                        <span :class="`fi fi-${flagCode}`"></span>
+                    </button>
                 </li>
             </ul>
         </nav>

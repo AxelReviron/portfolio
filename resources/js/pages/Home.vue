@@ -10,11 +10,12 @@ import ProjectSection from '@/components/ProjectSection.vue';
 import ContactSection from '@/components/ContactSection.vue';
 import ExperienceInterface from '@/interfaces/experienceInterface';
 import CategoryInterface from '@/interfaces/categoryInterface';
+import ResourceCollectionInterface from '@/interfaces/resourceCollectionInterface';
 
 const { categories, experiences, projects } = defineProps({
-    categories: Array as PropType<CategoryInterface[]>,
-    experiences: Array as PropType<ExperienceInterface[]>,
-    projects: Array as PropType<ProjectInterface[]>
+    categories: Object as PropType<ResourceCollectionInterface<CategoryInterface>>,
+    experiences: Object as PropType<ResourceCollectionInterface<ExperienceInterface>>,
+    projects: Object as PropType<ResourceCollectionInterface<ProjectInterface>>,
 })
 </script>
 
@@ -23,11 +24,12 @@ const { categories, experiences, projects } = defineProps({
         <title>Axel Reviron</title>
         <meta name="description" content="Fullstack Web Developer">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css" />
     </Head>
     <HomeSection/>
-    <TechnologySection :categories="categories"/>
-    <ExperienceSection :experiences="experiences"/>
-    <ProjectSection :projects="projects"/>
+    <TechnologySection :categories="categories.data"/>
+    <ExperienceSection :experiences="experiences.data"/>
+    <ProjectSection :projects="projects.data"/>
     <ContactSection />
 </template>
 

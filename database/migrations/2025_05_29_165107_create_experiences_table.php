@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('experiences', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name');
-            $table->text('description')->nullable();
+            $table->json('name');
+            $table->json('description')->nullable();
             $table->string('website')->nullable();
             $table->date('start_date');
             $table->date('end_date')->nullable();

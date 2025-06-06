@@ -9,10 +9,22 @@ use Illuminate\Database\Seeder;
 class CategorySeeder extends Seeder
 {
     private array $categories = [
-        'Frontend',
-        'Backend',
-        'Tools & Services',
-        'Videos Games & Others',
+        [
+            'en' => 'Frontend',
+            'fr' => 'Frontend',
+        ],
+        [
+            'en' => 'Backend',
+            'fr' => 'Backend',
+        ],
+        [
+            'en' => 'Tools & Services',
+            'fr' => 'Outils et Services',
+        ],
+        [
+            'en' => 'Videos Games & Others',
+            'fr' => 'Jeux Vidéos et Autres',
+        ],
     ];
 
     /**

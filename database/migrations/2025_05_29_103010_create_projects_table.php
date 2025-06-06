@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name');
-            $table->text('description');
+            $table->json('name');
+            $table->json('description');
             $table->string('website')->nullable();
             $table->string('github_url')->nullable();
             $table->timestamps();

@@ -11,7 +11,7 @@ class ContactRequestController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email:rfc,dns',
+            'email' => 'required|email:strict,dns',
             'phone' => 'nullable|numeric',
             'message' => 'required|string',
             'consent' => 'required|boolean|accepted',

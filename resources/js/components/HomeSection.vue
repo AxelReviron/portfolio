@@ -6,10 +6,12 @@ import Atropos from 'atropos';
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { TextPlugin } from "gsap/TextPlugin";
+import { useI18n } from 'vue-i18n';
 
 gsap.registerPlugin(SplitText)
 gsap.registerPlugin(TextPlugin);
 
+const { t } = useI18n()
 const scrollY = ref(0);
 const navBarFixed = ref(false);
 const otherSection = ref(false);
@@ -107,7 +109,7 @@ onUnmounted(() => {
                     Axel Reviron
                 </h1>
                 <h2 class="text-2xl text-green-800 mb-4 block md:hidden">
-                    Full Stack Web Developer
+                    {{ $t("home.subtitle") }}
                 </h2>
 
                 <div
@@ -140,7 +142,7 @@ onUnmounted(() => {
                         Axel Reviron
                     </h1>
                     <h2 class="md:text-[1.6rem] text-green-800 hidden md:block font-medium font-mono">
-                        Full Stack Web Developer
+                        {{ $t("home.subtitle") }}
                     </h2>
                 </div>
                 <p><span class="typewriter"></span><span class="cursor">▌</span></p>
