@@ -1,0 +1,31 @@
+export default {
+    privacy: {
+        title: "Privacy policy",
+        returnBtn: "Return",
+        PersonalDataProcessing: "Personal data processing",
+        responsible: "Responsible",
+        legalBasis: "Legal Basis",
+        legalBasisText: "Personal data is collected when a contact request is made. The collection and processing of this data is based on the user's consent.",
+        typeOfDataCollected: "Type of data collected",
+        lastName: "Last Name",
+        firstName: "First Name",
+        email: "E-mail",
+        ReasonForCollection: "Reason for collection",
+        ReasonForCollectionText: "The data collected is used exclusively to respond to contact requests. It is not used for commercial purposes, nor shared with third parties.",
+        DataRetentionPeriod: "Data retention period",
+        DataRetentionPeriodText: "The data collected is retained for the time necessary to respond to the contact request.",
+        RecipientOfData: "Recipient of data",
+        DataTransfer: "Data transfer",
+        DataTransferText: "The data collected is not transferred.",
+        UserRights: "User rights",
+        UserRightsText: "In accordance with the GDPR, the user has the following rights :",
+        accessRight: "Right of access",
+        rectificationRight: "Right of rectification",
+        erasureRight: "Right of erasure",
+        limitProcessingRight: "Right to limit processing",
+        objectToProcessing: "Right to object to processing",
+        dataPortabilityRight: "Right to data portability",
+        withdrawConsentRight: "Right to withdraw consent",
+        lodgeComplaintRight: "Right to lodge a complaint with a supervisory authority"
+    }
+}

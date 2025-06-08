@@ -1,0 +1,31 @@
+export default {
+    privacy: {
+        title: "Politique De Confidentialité",
+        returnBtn: "Retour",
+        PersonalDataProcessing: "Traitement des données personnelles",
+        responsible: "Responsable",
+        legalBasis: "Base juridique",
+        legalBasisText: "Des données personnelles sont collectées lors d'une demande de contact. La collecte et le traitement de ces données sont réalisés sur la base du consentement de l'utilisateur.",
+        typeOfDataCollected: "Type de données collectées",
+        lastName: "Nom",
+        firstName: "Prénom",
+        email: "E-mail",
+        ReasonForCollection: "Raison de la collecte",
+        ReasonForCollectionText: "Les données collectées sont exclusivement utilisées pour répondre aux demandes de contact. Elles ne sont pas utilisées à des fins commerciales, ni partagées avec des tiers.",
+        DataRetentionPeriod: "Durée de conservation des données",
+        DataRetentionPeriodText: "Les données collectées sont conservées durant la durée nécessaire pour répondre à la demande de contact.",
+        RecipientOfData: "Destinataire des données",
+        DataTransfer: "Transfert des données",
+        DataTransferText: "Les données collectées ne sont pas transférées.",
+        UserRights: "Droits des utilisateurs",
+        UserRightsText: "Conformément au RGPD, l'utilisateur dispose des droits suivants :",
+        accessRight: "Droit d'accès",
+        rectificationRight: "Droit de rectification",
+        erasureRight: "Droit d'effacement",
+        limitProcessingRight: "Droit de limitation du traitement",
+        objectToProcessing: "Droit d'opposition au traitement",
+        dataPortabilityRight: "Droit à la portabilité des données",
+        withdrawConsentRight: "Droit à retirer son consentement",
+        lodgeComplaintRight: "Droit d'introduire une réclamation auprès d'une autorité de contrôle"
+    }
+}
