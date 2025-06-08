@@ -32,7 +32,7 @@ jobs:
             docker compose -f compose.prod.yaml down
 
             echo "Building Docker images..."
-            docker compose -f compose.prod.yaml build --no-cache
+            docker compose -f compose.prod.yaml
 
             echo "Starting services..."
             docker compose -f compose.prod.yaml up -d
