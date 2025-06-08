@@ -5,6 +5,7 @@ import { Undo2 } from 'lucide-vue-next';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n()
+const currentLocale = useI18n().locale;
 
 </script>
 
@@ -101,7 +102,7 @@ const { t } = useI18n()
 
 <style scoped>
 .privacy-policy-container {
-    background-image: url("../../images/abstract-gradient.png");
+    background-image: url("../../images/abstract-gradient.webp");
     background-repeat: no-repeat;
     background-size: cover;
 }
