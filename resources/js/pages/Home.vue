@@ -11,6 +11,7 @@ import ContactSection from '@/components/ContactSection.vue';
 import ExperienceInterface from '@/interfaces/experienceInterface';
 import CategoryInterface from '@/interfaces/categoryInterface';
 import ResourceCollectionInterface from '@/interfaces/resourceCollectionInterface';
+import FooterSection from '@/components/FooterSection.vue';
 
 const { categories, experiences, projects } = defineProps({
     categories: Object as PropType<ResourceCollectionInterface<CategoryInterface>>,
@@ -30,10 +31,17 @@ const { categories, experiences, projects } = defineProps({
     <TechnologySection :categories="categories.data"/>
     <ExperienceSection :experiences="experiences.data"/>
     <ProjectSection :projects="projects.data"/>
-    <ContactSection />
+    <div class="footer-bg">
+        <ContactSection />
+        <FooterSection />
+    </div>
 </template>
 
 <style scoped>
-
+.footer-bg {
+    background-image: url("../../images/abstract-gradient.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 </style>

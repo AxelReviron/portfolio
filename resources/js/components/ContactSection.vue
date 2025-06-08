@@ -260,9 +260,5 @@ onMounted(() => {
 </template>
 
 <style scoped>
-#contact {
-    background-image: url("../../images/abstract-gradient.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-}
+
 </style>
