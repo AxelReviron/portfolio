@@ -6,8 +6,7 @@ import type { DefineComponent } from 'vue';
 import { createApp, h } from 'vue';
 import { ZiggyVue } from 'ziggy-js';
 import { createI18n } from 'vue-i18n';
-import en from './locales/en.json';
-import fr from './locales/fr.json';
+import messages from './locales';
 
 // Extend ImportMeta interface for Vite...
 declare module 'vite/client' {
@@ -31,25 +30,19 @@ createInertiaApp({
         const i18n = createI18n({
             locale: props.initialPage.props.locale,
             fallbackLocale: "en",
-            messages: {
-                en,
-                fr,
-            },
+            messages,
             legacy: false,
             globalInjection: true,
         })
-
-        const plausibleScript = document.createElement('script')
-        plausibleScript.setAttribute('defer', '')
-        plausibleScript.setAttribute('data-domain', 'axel-reviron.fr')
-        plausibleScript.src = 'https://plausible.nizukameha.xyz/js/script.hash.outbound-links.tagged-events.js'
-        document.head.appendChild(plausibleScript)
-
-        return createApp({ render: () => h(App, props) })
+        const app = createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(i18n)
             .use(ZiggyVue)
-            .mount(el);
+
+        app.config.globalProperties.$route = route;
+        app.mount(el);
+
+        return app;
     },
     progress: {
         color: '#4B5563',
