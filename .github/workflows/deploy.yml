@@ -28,11 +28,8 @@ jobs:
             echo "Pulling latest code..."
             git pull origin main
 
-            echo "Stopping containers gracefully..."
-            docker compose -f compose.prod.yaml down
-
-            echo "Starting services..."
-            docker compose -f compose.prod.yaml up -d
+            echo "Building and starting services..."
+            docker compose -f compose.prod.yaml up -d --build --force-recreate
 
             echo "Waiting for services to be ready..."
             sleep 10
