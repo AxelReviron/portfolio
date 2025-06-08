@@ -39,7 +39,7 @@ const { categories, experiences, projects } = defineProps({
 
 <style scoped>
 .footer-bg {
-    background-image: url("../../images/abstract-gradient.png");
+    background-image: url("../../images/abstract-gradient.webp");
     background-repeat: no-repeat;
     background-size: cover;
 }

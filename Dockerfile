@@ -36,7 +36,7 @@ COPY . /app
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-RUN npm ci
+RUN npm ci --only=production
 
 RUN npm run build
 

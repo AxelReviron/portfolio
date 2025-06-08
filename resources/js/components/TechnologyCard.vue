@@ -11,7 +11,7 @@ const { technology } = defineProps({
     <div v-if="technology"
         class="border border-neutral-200 bg-neutral-50 shadow-sm rounded-lg py-1 px-2 hover:scale-105"
     >
-        <a :href="technology.website" target="_blank" class="text-sm inline">
+        <a :href="technology.website" target="_blank" rel="noopener" class="text-sm inline">
             <i v-if="technology.icon" :class="technology.icon" class="mr-2"></i>
             {{ technology.name }}
         </a>

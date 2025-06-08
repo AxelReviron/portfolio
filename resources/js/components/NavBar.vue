@@ -29,6 +29,7 @@ const navItems = [
 ];
 
 function scrollToSection(link: string): void {
+    event.preventDefault();
     if (link.startsWith('#')) {
         gsap.to(window, { duration: 1, scrollTo: link });
     } else {
@@ -59,7 +60,9 @@ function changeLocale(newLocale: string): void {
                     <a
                         :key="navItem.label"
                         @click="scrollToSection(navItem.href)"
+                        :href="navItem.href"
                         class="flex items-center gap-2 px-2 py-1 rounded-full transition-colors group"
+                        rel="noopener"
                     >
                         <component
                             :is="navItem.icon"
@@ -74,6 +77,7 @@ function changeLocale(newLocale: string): void {
                 <template v-for="(flagCode, locale) in localeToFlag" :key="locale">
                     <li class="cursor-pointer" v-if="locale !== currentLocale">
                         <button
+                            aria-label="change locale"
                             @click="changeLocale(locale)"
                             class="cursor-pointer"
                         >

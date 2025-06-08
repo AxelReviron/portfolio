@@ -120,7 +120,7 @@ onMounted(() => {
                         <h4 class="text-lg text-neutral-500 font-medium mb-4 text-xl">
                             {{ experience.name }}
                         </h4>
-                        <a v-if="experience.website" :href="experience.website" target="_blank">
+                        <a v-if="experience.website" :href="experience.website" target="_blank" :aria-label="`Go to ${experience.name} website`" rel="noopener">
                             <ExternalLink class="mt-1 text-green-600 w-5 h-5"/>
                         </a>
                     </div>

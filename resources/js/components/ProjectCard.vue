@@ -47,6 +47,7 @@ const { project } = defineProps({
                     v-if="project.website"
                     :href="project.website"
                     target="_blank"
+                    rel="noopener"
                     class="flex flex-row gap-2 text-lg text-green-600 font-medium"
                 >
                     Website
@@ -56,6 +57,7 @@ const { project } = defineProps({
                     v-if="project.github_url"
                     :href="project.github_url"
                     target="_blank"
+                    rel="noopener"
                     class="flex flex-row gap-2 text-lg text-green-600 font-medium"
                 >
                     Github

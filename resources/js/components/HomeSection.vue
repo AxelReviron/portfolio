@@ -118,12 +118,12 @@ onUnmounted(() => {
                             <div class="atropos-inner">
                                 <img
                                     class="atropos-layer absolute object-cover rounded-3xl border-4 border-transparent"
-                                    src="../../images/background_image.png" alt="background"
+                                    src="../../images/background_image.webp" alt="background"
                                     data-atropos-offset="-1"
                                 />
                                 <img
                                     class="absolute object-cover rounded-3xl border-4 border-transparent relative"
-                                    src="../../images/picture_transparent.png"
+                                    src="../../images/picture_transparent.webp"
                                     alt="picture"
                                     data-atropos-offset="1"
                                 />
@@ -134,7 +134,7 @@ onUnmounted(() => {
 
             </div>
             <div class="flex flex-col h-70 md:h-100 justify-center items-start gap-3 w-84 md:w-120">
-                <div class="splitTitles">
+                <div class="splitTitles" role="region">
                     <h1 class="md:text-4xl font-bold text-green-900 hidden md:block">
                         Axel Reviron
                     </h1>
@@ -152,7 +152,7 @@ onUnmounted(() => {
 
 <style scoped>
 .home-section-container {
-    background-image: url("../../images/abstract-gradient.png");
+    background-image: url("../../images/abstract-gradient.webp");
     background-repeat: no-repeat;
     background-size: cover;
 }

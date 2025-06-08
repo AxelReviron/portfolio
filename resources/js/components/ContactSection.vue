@@ -104,7 +104,7 @@ onMounted(() => {
                         <p class="pr-4 w-45 md:w-70 text-sm md:text-lg">
                             <i18n-t keypath="contact.text" tag="span">
                                 <template #linkedin_link>
-                                    <a href="https://www.linkedin.com/in/axel-reviron/" target="_blank">
+                                    <a href="https://www.linkedin.com/in/axel-reviron/" target="_blank" rel="noopener">
                                         <span class="text-green-800 font-medium">{{ t('socials.linkedin') }}</span>
                                     </a>
                                 </template>
@@ -126,12 +126,12 @@ onMounted(() => {
                                 <div class="atropos-inner">
                                     <img
                                         class="atropos-layer absolute object-cover rounded-3xl border-4 border-transparent"
-                                        src="../../images/background_image.png" alt="background"
+                                        src="../../images/background_image.webp" alt="background"
                                         data-atropos-offset="-1"
                                     />
                                     <img
                                         class="absolute object-cover rounded-3xl border-4 border-transparent relative"
-                                        src="../../images/picture_transparent.png"
+                                        src="../../images/picture_transparent.webp"
                                         alt="picture"
                                         data-atropos-offset="1"
                                     />
@@ -153,8 +153,8 @@ onMounted(() => {
                                 v-model="formData.name"
                                 :placeholder="t('contact.name')"
                                 class="w-80 md:w-100 bg-white/30 border border-green-700 focus:outline-green-800 p-2 rounded-lg text-green-700"
-                                name="name"
-                                required
+                                name="name" required
+                                id="name"
                             >
                             <div v-if="errors.name" class="text-red-500 text-sm mt-1">{{ errors.name[0] }}</div>
                         </div>
@@ -168,6 +168,7 @@ onMounted(() => {
                                 name="email"
                                 class="w-80 md:w-100 bg-white/30 border border-green-700 focus:outline-green-800 p-2 rounded-lg text-green-700"
                                 required
+                                id="email"
                             >
                             <div v-if="errors.email" class="text-red-500 text-sm mt-1">{{ errors.email[0] }}</div>
                         </div>
@@ -180,16 +181,19 @@ onMounted(() => {
                                 placeholder="06 00 00 00 00"
                                 class="w-80 md:w-100 bg-white/30 border border-green-700 focus:outline-green-800 p-2 rounded-lg text-green-700"
                                 name="phone"
+                                id="phone"
                             >
                             <div v-if="errors.phone" class="text-red-500 text-sm mt-1">{{ errors.phone[0] }}</div>
                         </div>
 
                         <div class="flex flex-col mb-2">
-                            <label for="message" class="p-1 font-medium text-lg text-green-900">{{ $t("contact.message") }}</label> <textarea
-                            v-model="formData.message"
-                            :placeholder="t('contact.message')"
-                            class="w-80 md:w-100 bg-white/30 border border-green-700 focus:outline-green-800 p-2 rounded-lg text-green-700"
-                            name="message" required
+                            <label for="message" class="p-1 font-medium text-lg text-green-900">{{ $t("contact.message") }}</label>
+                            <textarea
+                                v-model="formData.message"
+                                :placeholder="t('contact.message')"
+                                class="w-80 md:w-100 bg-white/30 border border-green-700 focus:outline-green-800 p-2 rounded-lg text-green-700"
+                                name="message" required
+                                id="message"
                         >
                             </textarea>
                             <div v-if="errors.message" class="text-red-500 text-sm mt-1">{{ errors.message[0] }}</div>
@@ -201,6 +205,7 @@ onMounted(() => {
                                 v-model="formData.consent"
                                 required
                                 name="consent"
+                                id="consent"
                             >
                             <label for="consent" class="text-sm font-normal text-green-800">{{ $t("contact.consent") }}</label>
                             <div v-if="errors.consent" class="text-red-500 text-sm mt-1">{{ errors.consent[0] }}</div>
