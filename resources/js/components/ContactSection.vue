@@ -109,7 +109,7 @@ onMounted(() => {
                                     </a>
                                 </template>
                                 <template #email_link>
-                                    <a href="mailto:axel-reviron@gmail.com">
+                                    <a href="mailto:contact@axel-reviron.fr">
                                         <span class="text-green-800 font-medium">{{ t('socials.email') }}</span>
                                     </a>
                                 </template>
