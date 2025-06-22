@@ -15,7 +15,8 @@ services:
       - caddy_config:/config
       - ./storage:/app/storage
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
     restart: unless-stopped
     networks:
       - portfolio_network
@@ -32,6 +33,11 @@ services:
       - db_data:/var/lib/mysql
     networks:
       - portfolio_network
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 5s
+      timeout: 3s
+      retries: 5
 volumes:
   caddy_data:
   caddy_config:
