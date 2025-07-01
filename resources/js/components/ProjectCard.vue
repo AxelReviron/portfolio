@@ -20,12 +20,12 @@ const { project } = defineProps({
                        transition-all duration-300
                        group-hover:blur-sm"
             >
-            <p
+            <span v-html="project.description"
                 class="absolute inset-0 flex items-center justify-center p-4
                        text-white text-center text-lg md:text-xl font-medium
                        text-shadow-lg opacity-0 transition-opacity duration-300
                        group-hover:opacity-100 cursor-pointer"
-            >{{ project.description }}</p>
+            ></span>
         </div>
 
         <div class="px-4 mb-4 md:h-42 flex flex-col justify-start gap-4">
