@@ -30,7 +30,7 @@ const { project } = defineProps({
 
         <div class="px-4 mb-4 md:h-42 flex flex-col justify-start gap-4">
             <h3 class="text-xl text-green-900 font-bold">{{ project.name }}</h3>
-            <p class="md:hidden mb-2">{{ project.description }}</p>
+            <span v-html="project.description" class="md:hidden mb-2"></span>
             <ul
                 v-if="project.technologies"
                 class="flex flex-row gap-2 flex-wrap mb-2"
