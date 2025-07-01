@@ -24,7 +24,7 @@ const { project } = defineProps({
                 class="absolute inset-0 flex items-center justify-center p-4
                        text-white text-center text-lg md:text-xl font-medium
                        text-shadow-lg opacity-0 transition-opacity duration-300
-                       group-hover:opacity-100 cursor-pointer"
+                       group-hover:opacity-100 group-hover:bg-[#000]/10 cursor-pointer z-10"
             ></span>
         </div>
 
