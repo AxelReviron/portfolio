@@ -127,7 +127,7 @@ class ProjectResource extends Resource
                     ->limit()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('website')
-                    ->url(fn (string $state): string => $state)
+                    ->url(fn (?string $state): string => $state ? $state : '')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('github_url')
                     ->url(fn (?string $state): string => $state ? $state : '')

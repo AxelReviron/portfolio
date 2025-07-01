@@ -58,7 +58,7 @@ class ExperienceResource extends Resource
                     ->limit()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('website')
-                    ->url(fn (string $state): string => $state)
+                    ->url(fn (?string $state): string => $state ? $state : '')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('start_date')
                     ->date()
