@@ -20,7 +20,7 @@ class HomeController extends Controller
 
         $experiences = Experience::orderBy('start_date', 'desc')->get()->toResourceCollection();
 
-        $projects = Project::with(['experiences', 'technologies', 'media'])->get()->toResourceCollection();
+        $projects = Project::with(['experiences', 'technologies', 'media'])->orderBy('created_at', 'desc')->get()->toResourceCollection();
 
         return Inertia::render('Home', [
             'categories' => $categories,
