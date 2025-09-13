@@ -142,7 +142,9 @@ onUnmounted(() => {
                         {{ $t("home.subtitle") }}
                     </h2>
                 </div>
-                <p><span class="typewriter"></span><span class="cursor">▌</span></p>
+                <p class="min-h-38">
+                    <span class="typewriter"></span><span class="cursor">▌</span>
+                </p>
             </div>
         </div>
 
