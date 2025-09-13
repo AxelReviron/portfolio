@@ -28,7 +28,7 @@ const currentLocale = useI18n().locale;
             <ul>
                 <li><span class="font-medium">{{ $t('legal.lastname') }} {{ $t('legal.firstName') }} : </span>Axel Reviron</li>
                 <li><span class="font-medium">{{ $t('legal.directorOfPublication') }} : </span>Axel Reviron</li>
-                <li><span class="font-medium">{{ $t('legal.email') }} : </span>axel-reviron@gmail.com</li>
+                <li><span class="font-medium">{{ $t('legal.email') }} : </span>contact@axel-reviron.fr</li>
             </ul>
             <h2 class="text-2xl font-medium my-4">{{ $t('legal.hosting') }}</h2>
             <ul>
