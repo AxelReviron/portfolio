@@ -20,12 +20,19 @@ const { project } = defineProps({
                        transition-all duration-300
                        group-hover:blur-sm"
             >
-            <span v-html="project.description"
-                class="absolute inset-0 flex items-center justify-center p-4
-                       text-white text-center text-lg md:text-xl font-medium
-                       text-shadow-lg opacity-0 transition-opacity duration-300
-                       group-hover:opacity-100 group-hover:bg-[#000]/10 cursor-pointer z-10"
-            ></span>
+            <a
+                v-if="project.website"
+                :href="project.website"
+                target="_blank"
+                rel="noopener"
+            >
+                <span v-html="project.description"
+                    class="absolute inset-0 flex items-center justify-center p-4
+                           text-white text-center text-lg md:text-xl font-medium
+                           text-shadow-lg opacity-0 transition-opacity duration-300
+                           group-hover:opacity-100 group-hover:bg-[#000]/10 cursor-pointer z-10"
+                ></span>
+            </a>
         </div>
 
         <div class="px-4 mb-4 md:h-42 flex flex-col justify-start gap-4">
@@ -48,7 +55,11 @@ const { project } = defineProps({
                     :href="project.website"
                     target="_blank"
                     rel="noopener"
-                    class="flex flex-row gap-2 text-lg text-green-600 font-medium"
+                    class="relative inline-flex items-center gap-2 text-lg text-green-600 font-medium
+                     after:content-[''] after:absolute after:left-0 after:-bottom-0.5
+                     after:w-17 after:h-[2px] after:bg-current after:scale-x-0
+                     after:origin-left after:transition-transform after:duration-300
+                     hover:after:scale-x-100"
                 >
                     Website
                     <ExternalLink class="mt-1 w-5 h-5"/>
@@ -58,7 +69,11 @@ const { project } = defineProps({
                     :href="project.github_url"
                     target="_blank"
                     rel="noopener"
-                    class="flex flex-row gap-2 text-lg text-green-600 font-medium"
+                    class="relative inline-flex items-center gap-2 text-lg text-green-600 font-medium
+                     after:content-[''] after:absolute after:left-0 after:-bottom-0.5
+                     after:w-14 after:h-[2px] after:bg-current after:scale-x-0
+                     after:origin-left after:transition-transform after:duration-300
+                     hover:after:scale-x-100"
                 >
                     Github
                     <ExternalLink class="mt-1 w-5 h-5"/>
